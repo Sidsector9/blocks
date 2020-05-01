@@ -23,3 +23,5 @@ if ( ! defined( 'PLUGIN_DIR_URL' ) ) {
 if ( file_exists( PLUGIN_DIR_PATH . 'vendor/autoload.php' ) ) {
 	require_once 'vendor/autoload.php';
 }
+
+require_once 'instances.php';
