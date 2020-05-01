@@ -12,4 +12,6 @@
  * @package         Newsuk_Blocks
  */
 
-// Your code starts here.
+if ( file_exists( 'vendor/autoload.php' ) ) {
+	require_once 'vendor/autoload.php';
+}
