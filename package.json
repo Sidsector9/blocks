@@ -5,7 +5,9 @@
   "author": "Siddharth Thevaril <siddharth.thevaril@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@wordpress/scripts": "^9.0.0"
+    "@wordpress/scripts": "^9.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "webpack": "^4.43.0",
