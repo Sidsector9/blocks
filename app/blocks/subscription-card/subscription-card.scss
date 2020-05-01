@@ -1,0 +1,62 @@
+@font-face {
+	font-family: 'TimesModern-Bold';
+	src: url( https://www.thetimes.co.uk/subscribe/wp-content/themes/storefront-uk/fonts/TimesModernBold/TimesModern-Bold.woff ) format( 'woff' );
+}
+
+.wp-block[data-type="newsuk/subscription-card"] {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.editor-styles-wrapper .wp-block .newsuk,
+.newsuk {
+	&__subscription-card {
+		position: relative;
+		max-width: 780px;
+		padding: 20px;
+		padding-left: 140px;
+		border: 1px solid #E2E2E2;
+		border-radius: 3px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 15px;
+		margin-bottom: 15px;
+		min-height: 140px;
+
+		&:hover {
+			background-color: #fcfcfc;
+			border-color: #a9a9a9;		
+		}
+
+		h5 {
+			font-family: 'TimesModern-Bold';
+			font-size: 24px;
+			color: #1d1d1b;
+			margin: 0;
+		}
+		
+		div {
+			font-size: 18px;
+		}
+	}
+
+	&__subscription-card-image {
+		position: absolute;
+		width: 98px;
+		height: 98px;
+		border: 1px solid #ccc;
+		left: 20px;
+		border-radius: 50%;
+		top: 50%;
+		transform: translate( 0, -50% );
+		overflow: hidden;
+		cursor: pointer;
+
+		&__container {
+			height: 100%;
+			background-repeat: no-repeat !important;
+			background-size: cover !important;
+			background-position: 50% 50% !important;
+		}
+	}
+}

@@ -9,6 +9,7 @@ const {
 const {
 	PanelBody,
 	ColorPicker,
+	TextControl
 } = wp.components;
 
 registerBlockType( 'newsuk/title', {
@@ -24,16 +25,12 @@ registerBlockType( 'newsuk/title', {
             source: 'children',
             selector: 'h3',
 		},
-		toggleField: {
-			type: 'boolean',
-		},
 		backgroundColor: {
 			type: 'object',
 		},
 	},
 	edit( props ) {
 		const { attributes: { titleText, backgroundColor }, setAttributes } = props;
-
 		return (
 			<>
 				<InspectorControls>
@@ -63,6 +60,7 @@ registerBlockType( 'newsuk/title', {
 				backgroundColor: props.attributes.backgroundColor?.hex,
 			} }>
 				<RichText.Content tagName="h3" value={ props.attributes.titleText } />
+				{/* <h1>{ props.attributes?.titleText }</h1> */}
 			</div>
 		);
 	},

@@ -3,11 +3,15 @@
 	src: url( https://www.thetimes.co.uk/subscribe/wp-content/themes/storefront-uk/fonts/TimesModernBold/TimesModern-Bold.woff ) format( 'woff' );
 }
 
+.wp-block[data-type="newsuk/title"] {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 .editor-styles-wrapper .wp-block .newsuk,
 .newsuk {
 	&__title {
 		padding: 20px 0;
-		// margin: 0 !important;
 
 		h3 {
 			font-family: 'TimesModern-Bold';
