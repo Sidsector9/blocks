@@ -1,2 +1,2 @@
 <?php
-new \App\Asset_Loader();
+new \NewsUk\Register_Blocks();

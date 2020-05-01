@@ -1,0 +1,17 @@
+@font-face {
+	font-family: 'TimesModern-Bold';
+	src: url( https://www.thetimes.co.uk/subscribe/wp-content/themes/storefront-uk/fonts/TimesModernBold/TimesModern-Bold.woff ) format( 'woff' );
+}
+
+.editor-styles-wrapper .wp-block {
+	.newsuk {
+		&__title {
+			font-family: 'TimesModern-Bold';
+			font-size: 3rem;
+			color: #1d1d1b;
+			text-align: center;
+			line-height: 1.25;
+			padding: 20px auto;
+		}
+	}
+}

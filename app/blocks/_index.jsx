@@ -1,1 +1,1 @@
-import '../scss/_index.scss'
+import './title/title.jsx';
