@@ -1,0 +1,10 @@
+{
+  "name": "newsuk-blocks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Siddharth Thevaril <siddharth.thevaril@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@wordpress/scripts": "^9.0.0"
+  }
+}
