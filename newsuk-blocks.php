@@ -12,6 +12,14 @@
  * @package         Newsuk_Blocks
  */
 
-if ( file_exists( 'vendor/autoload.php' ) ) {
+if ( ! defined( 'PLUGIN_DIR_PATH' ) ) {
+	define( 'PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
+}
+
+if ( ! defined( 'PLUGIN_DIR_URL' ) ) {
+	define( 'PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
+}
+
+if ( file_exists( PLUGIN_DIR_PATH . 'vendor/autoload.php' ) ) {
 	require_once 'vendor/autoload.php';
 }

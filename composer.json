@@ -6,5 +6,9 @@
             "email": "siddharth.thevaril@gmail.com"
         }
     ],
-    "require": {}
+	"autoload": {
+		"psr-4": {
+			"Blocks\\": "blocks/"
+		}
+	}
 }
