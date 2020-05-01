@@ -1,6 +1,15 @@
 import './title.scss';
 
 const { registerBlockType } = wp.blocks;
+const {
+	RichText,
+	InspectorControls
+} = wp.blockEditor;
+
+const {
+	PanelBody,
+	ColorPicker,
+} = wp.components;
 
 registerBlockType( 'newsuk/title', {
 	title: 'Title',
@@ -9,10 +18,52 @@ registerBlockType( 'newsuk/title', {
 	supports: {
 		align: true,
 	},
-	edit() {
-		return <h3 className='newsuk__title'>Hello World, step 1 (from the editor).</h3>;
+	attributes: {
+		titleText: {
+			type: 'array',
+            source: 'children',
+            selector: 'h3',
+		},
+		toggleField: {
+			type: 'boolean',
+		},
+		backgroundColor: {
+			type: 'object',
+		},
 	},
-	save() {
-		return null;
+	edit( props ) {
+		const { attributes: { titleText, backgroundColor }, setAttributes } = props;
+
+		return (
+			<>
+				<InspectorControls>
+					<PanelBody title="Title Settings" initialOpen={ true }>
+						<p>Background Color</p>
+						<ColorPicker
+							color={ backgroundColor }
+							onChangeComplete={ ( value ) => setAttributes( { backgroundColor: value } ) }
+						/>
+					</PanelBody>
+				</InspectorControls>
+				<div className="newsuk__title" style={ {
+					backgroundColor: backgroundColor?.hex,
+				} }>
+					<RichText
+						tagName="h3"
+						onChange={ ( value ) => setAttributes( { titleText: value } ) }
+						value={ titleText }
+					/>
+				</div>
+			</>
+		);
+	},
+	save( props ) {
+		return (
+			<div className="newsuk__title" style={ {
+				backgroundColor: props.attributes.backgroundColor?.hex,
+			} }>
+				<RichText.Content tagName="h3" value={ props.attributes.titleText } />
+			</div>
+		);
 	},
 } );

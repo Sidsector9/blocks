@@ -13,8 +13,11 @@ class Register_Blocks {
 	 */
 	public function register_blocks() {
 		wp_register_script( 'newsuk-blocks-js', PLUGIN_DIR_URL . 'dist/js/newsuk-blocks.min.js', array( 'wp-blocks', 'wp-element' ), '1.0', true );
+		wp_register_style( 'newsuk-blocks-css', PLUGIN_DIR_URL . 'dist/css/newsuk-blocks.min.css', array(), '1.0', 'all' );
 		register_block_type( 'newsuk/title', array(
 			'editor_script' => 'newsuk-blocks-js',
+			'editor_style' => 'newsuk-blocks-css',
+			'style' => 'newsuk-blocks-css',
 		) );
 	}
 
