@@ -1,0 +1,28 @@
+.wp-block[data-type="newsuk/header"] {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.wp-block[data-type="newsuk/header"] .wp-block-newsuk-header,
+.wp-block-newsuk-header {
+	height: 0;
+	padding-bottom: 30%;
+	background-color: #e2e2e2;
+	background-size: cover;
+	background-position: 50% 50%;
+
+	.newsuk {
+		&__header-image-bg {
+			display: inline-block;
+			margin-left: 20px;
+			margin-top: 20px;
+
+			svg {
+				width: 40px;
+				height: 40px;
+				fill: #FFB900;
+				cursor: pointer;
+			}
+		}
+	}
+}

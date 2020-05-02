@@ -1,10 +1,11 @@
 import ContentEditable from 'react-contenteditable'
 import './subscription-card.scss';
 
-const { Icon } = wp.components;
+const { Icon, PanelBody, PanelRow, ToggleControl, TextControl } = wp.components;
 const { registerBlockType } = wp.blocks;
 const {
-	MediaUpload
+	MediaUpload,
+	InspectorControls,
 } = wp.blockEditor;
 
 registerBlockType( 'newsuk/subscription-card', {
@@ -34,39 +35,74 @@ registerBlockType( 'newsuk/subscription-card', {
 			selector: '.newsuk__subscription-description',
 			default: 'Description...',
 		},
+		openExternally: {
+			type: 'boolean',
+			default: false,
+		},
+		subscriptionHyperlink: {
+			type: 'string',
+		}
 	},
 	edit( props ) {
-		const { attributes: { subscriptionHeading, subscriptionDescription, subscriptionImage }, className, setAttributes, isSelected } = props;
+		const {
+			attributes: {
+				subscriptionHeading,
+				subscriptionDescription,
+				subscriptionImage,
+				openExternally,
+				subscriptionHyperlink,
+			},
+			className,
+			setAttributes,
+		} = props;
 
 		return (
-			<div class={ className }>
-				<div class="newsuk__subscription-image-container">
-					<MediaUpload 
-						onSelect={ ( value ) => { setAttributes( { subscriptionImage: value.sizes.full.url } ); console.log( value.url ) } }
-						render={ ( { open } ) => {
-							return !! subscriptionImage ? <img src={ subscriptionImage } onClick={ open } /> : <div className="newsuk__subscription-image-placeholder" onClick={ open }><Icon icon="camera" /></div>
-						} }
-					/>
+			<>
+				<InspectorControls>
+					<PanelBody title="My Block Settings" initialOpen={ true }>
+						<p>Hyperlink</p>
+						<TextControl
+							value={ subscriptionHyperlink }
+							onChange={ ( value ) => { setAttributes( { subscriptionHyperlink: value } ) } }
+						/>
+						<ToggleControl
+							label="Open in a tab"
+							checked={ openExternally }
+							onChange={ ( value ) => {
+								setAttributes( { openExternally: value } )
+							} }
+						/>
+					</PanelBody>
+				</InspectorControls>
+				<div class={ className }>
+					<div class="newsuk__subscription-image-container">
+						<MediaUpload 
+							onSelect={ ( value ) => { setAttributes( { subscriptionImage: value.sizes.full.url } ); console.log( value.url ) } }
+							render={ ( { open } ) => {
+								return !! subscriptionImage ? <img src={ subscriptionImage } onClick={ open } /> : <div className="newsuk__subscription-image-placeholder" onClick={ open }><Icon icon="camera" /></div>
+							} }
+						/>
+					</div>
+					<div class="newsuk__subscription-details">
+						<ContentEditable
+							className="newsuk__subscription-heading"
+							onChange={ ( e ) => setAttributes( { subscriptionHeading: e.target.value } ) }
+							html={ subscriptionHeading }
+							tagName="div"
+						/>
+						<ContentEditable
+							className="newsuk__subscription-description"
+							onChange={ ( e ) => setAttributes( { subscriptionDescription: e.target.value } ) }
+							html={ subscriptionDescription }
+							tagName="div"
+						/>
+					</div>
 				</div>
-				<div class="newsuk__subscription-details">
-					<ContentEditable
-						className="newsuk__subscription-heading"
-						onChange={ ( e ) => setAttributes( { subscriptionHeading: e.target.value } ) }
-						html={ subscriptionHeading }
-						tagName="div"
-					/>
-					<ContentEditable
-						className="newsuk__subscription-description"
-						onChange={ ( e ) => setAttributes( { subscriptionDescription: e.target.value } ) }
-						html={ subscriptionDescription }
-						tagName="div"
-					/>
-				</div>
-			</div>
+			</>
 		);
 	},
 	save( props ) {
-		const { attributes: { subscriptionHeading, subscriptionDescription, subscriptionImage } } = props;
+		const { attributes: { subscriptionHeading, subscriptionDescription, subscriptionImage, openExternally, subscriptionHyperlink } } = props;
 
 		return (
 			<div>
@@ -78,6 +114,6 @@ registerBlockType( 'newsuk/subscription-card', {
 					<div className="newsuk__subscription-description" dangerouslySetInnerHTML={ { __html: subscriptionDescription } } />
 				</div>
 			</div>
-		);
+		)
 	},
 } );
