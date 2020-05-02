@@ -77,7 +77,7 @@ registerBlockType( 'newsuk/subscription-card', {
 				<div class={ className }>
 					<div class="newsuk__subscription-image-container">
 						<MediaUpload 
-							onSelect={ ( value ) => { setAttributes( { subscriptionImage: value.sizes.full.url } ); console.log( value.url ) } }
+							onSelect={ ( value ) => { setAttributes( { subscriptionImage: value.sizes.full.url } ); } }
 							render={ ( { open } ) => {
 								return !! subscriptionImage ? <img src={ subscriptionImage } onClick={ open } /> : <div className="newsuk__subscription-image-placeholder" onClick={ open }><Icon icon="camera" /></div>
 							} }

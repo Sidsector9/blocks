@@ -164,7 +164,7 @@ registerBlockType( 'newsuk/banner', {
 					backgroundImage: `url( ${ bannerImage } )`,
 				} }>
 					<MediaUpload
-						onSelect={ ( value ) => { setAttributes( { bannerImage: value.sizes.full.url } ); console.log( value.url ) } }
+						onSelect={ ( value ) => { setAttributes( { bannerImage: value.sizes.full.url } ); } }
 						render={ ( { open } ) => {
 							return isSelected && <div className="newsuk__banner-image-bg" onClick={ open }><Icon icon="camera" /></div>
 						} }

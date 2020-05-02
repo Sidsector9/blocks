@@ -32,6 +32,12 @@ class Register_Blocks {
 			'editor_style' => 'newsuk-blocks-css',
 			'style' => 'newsuk-blocks-css',
 		) );
+
+		register_block_type( 'newsuk/columns', array(
+			'editor_script' => 'newsuk-blocks-js',
+			'editor_style' => 'newsuk-blocks-css',
+			'style' => 'newsuk-blocks-css',
+		) );
 	}
 
 	public function register_custom_category( $categories, $post ) {
