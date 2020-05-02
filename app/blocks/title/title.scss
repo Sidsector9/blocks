@@ -1,10 +1,6 @@
 .wp-block[data-type="newsuk/title"] {
 	margin-top: 0;
 	margin-bottom: 0;
-
-	input {
-		@include reset-input;
-	}
 }
 
 .wp-block[data-type="newsuk/title"] .wp-block-newsuk-title,

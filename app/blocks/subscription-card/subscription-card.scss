@@ -1,10 +1,6 @@
 .wp-block[data-type="newsuk/subscription-card"] {
 	margin-top: 0;
 	margin-bottom: 0;
-
-	input {
-		@include reset-input;
-	}
 }
 
 .wp-block[data-type="newsuk/subscription-card"] .wp-block-newsuk-subscription-card,
@@ -66,5 +62,13 @@
 			width: 100%;
 			font-size: 1rem;
 		}
+	}
+}
+
+.wp-block[data-type="newsuk/subscription-card"] .newsuk__subscription-image-placeholder {
+	cursor: pointer;
+
+	&:hover {
+		background-color: #d2d2d2;
 	}
 }

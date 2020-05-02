@@ -1,9 +1,7 @@
+import ContentEditable from 'react-contenteditable'
 import './title.scss';
 
 const { registerBlockType } = wp.blocks;
-const {
-	RichText,
-} = wp.blockEditor;
 
 registerBlockType( 'newsuk/title', {
 	title: 'Title',
@@ -21,17 +19,20 @@ registerBlockType( 'newsuk/title', {
 		},
 	},
 	edit( props ) {
-		const { attributes: { titleText }, setAttributes, className, isSelected } = props;
+		const { attributes: { titleText }, setAttributes, className } = props;
 
 		return (
-			<>
-				{ isSelected ? <input className={ className } type="text" value={ titleText } onChange={ ( e ) => setAttributes( { titleText: e.target.value } ) } /> : <div className={ className } >{ titleText }</div> }
-			</>
+			<ContentEditable
+				className={ className }
+				html={ titleText }
+				onChange={ ( e ) => setAttributes( { titleText: e.target.value } ) }
+			/>
 		);
 	},
 	save( props ) {
+		const { attributes: { titleText } } = props;
 		return (
-			<div className="newsuk__title">{ props.attributes.titleText }</div>
+			<div className="newsuk__title" dangerouslySetInnerHTML={ { __html: titleText } } />
 		);
 	},
 } );
