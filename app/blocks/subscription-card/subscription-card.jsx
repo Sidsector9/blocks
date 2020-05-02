@@ -1,15 +1,11 @@
+import ContentEditable from 'react-contenteditable'
 import './subscription-card.scss';
 
+const { Icon } = wp.components;
 const { registerBlockType } = wp.blocks;
 const {
-	RichText,
 	MediaUpload
 } = wp.blockEditor;
-
-const {
-	PanelBody,
-	ColorPicker,
-} = wp.components;
 
 registerBlockType( 'newsuk/subscription-card', {
 	title: 'Subscription Card',
@@ -19,66 +15,68 @@ registerBlockType( 'newsuk/subscription-card', {
 		align: true,
 	},
 	attributes: {
-		titleText: {
-			type: 'array',
-            source: 'children',
-            selector: 'h5',
-		},
 		subscriptionImage: {
 			type: 'string',
+			source: 'attribute',
+			attribute: 'src',
+			selector: '.newsuk__subscription-image',
+			default: '',
 		},
 		subscriptionHeading: {
 			type: 'string',
+            source: 'text',
+			selector: '.newsuk__subscription-heading',
+			default: 'Headline...',
 		},
 		subscriptionDescription: {
 			type: 'string',
+            source: 'text',
+			selector: '.newsuk__subscription-description',
+			default: 'Description...',
 		},
 	},
 	edit( props ) {
-		const { attributes: { subscriptionHeading, subscriptionDescription, subscriptionImage }, setAttributes } = props;
+		const { attributes: { subscriptionHeading, subscriptionDescription, subscriptionImage }, className, setAttributes, isSelected } = props;
 
 		return (
-			<>
-				<div className="newsuk__subscription-card">
-					<div className="newsuk__subscription-card-image">
-						<MediaUpload 
-							onSelect={ ( value ) => { setAttributes( { subscriptionImage: value.sizes.full.url } ); console.log( value.url ) } }
-							render={ ( { open } ) => {
-								return <div className="newsuk__subscription-card-image__container"
-									style={ {
-										background: `url( ${ subscriptionImage } )`
-									} }
-									onClick={ open }
-								/>;
-							} }
-						/>
-					</div>
-					<RichText
-						tagName="h5"
-						onChange={ ( value ) => setAttributes( { subscriptionHeading: value } ) }
-						value={ subscriptionHeading }
-						placeholder="Heading..."
-					/>
-					<RichText
-						tagName="div"
-						onChange={ ( value ) => setAttributes( { subscriptionDescription: value } ) }
-						value={ subscriptionDescription }
-						placeholder="Description..."
+			<div class={ className }>
+				<div class="newsuk__subscription-image-container">
+					<MediaUpload 
+						onSelect={ ( value ) => { setAttributes( { subscriptionImage: value.sizes.full.url } ); console.log( value.url ) } }
+						render={ ( { open } ) => {
+							return !! subscriptionImage ? <img src={ subscriptionImage } onClick={ open } /> : <div className="newsuk__subscription-image-placeholder" onClick={ open }><Icon icon="camera" /></div>
+						} }
 					/>
 				</div>
-			</>
+				<div class="newsuk__subscription-details">
+					<ContentEditable
+						className="newsuk__subscription-heading"
+						onChange={ ( e ) => setAttributes( { subscriptionHeading: e.target.value } ) }
+						html={ subscriptionHeading }
+						tagName="div"
+					/>
+					<ContentEditable
+						className="newsuk__subscription-description"
+						onChange={ ( e ) => setAttributes( { subscriptionDescription: e.target.value } ) }
+						html={ subscriptionDescription }
+						tagName="div"
+					/>
+				</div>
+			</div>
 		);
 	},
 	save( props ) {
 		const { attributes: { subscriptionHeading, subscriptionDescription, subscriptionImage } } = props;
 
 		return (
-			<div className="newsuk__subscription-card">
-				<div className="newsuk__subscription-card-image">
-					<div className="newsuk__subscription-card-image__container" style={ { background: `url( ${ subscriptionImage } )` } }></div>
+			<div>
+				<div class="newsuk__subscription-image-container">
+					<img className="newsuk__subscription-image" src={ subscriptionImage } />
 				</div>
-				<RichText.Content tagName="h5" value={ subscriptionHeading } />
-				<RichText.Content tagName="div" value={ subscriptionDescription } />
+				<div class="newsuk__subscription-details">
+					<div className="newsuk__subscription-heading" dangerouslySetInnerHTML={ { __html: subscriptionHeading } } />
+					<div className="newsuk__subscription-description" dangerouslySetInnerHTML={ { __html: subscriptionDescription } } />
+				</div>
 			</div>
 		);
 	},

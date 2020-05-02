@@ -9,9 +9,10 @@
 
 .wp-block[data-type="newsuk/title"] .wp-block-newsuk-title,
 .wp-block-newsuk-title {
-	font-family: monospace;
+	@include font-primary;
 	font-size: 3rem;
 	text-align: center;
 	width: 100%;
 	line-height: 1.8;
+	margin: 20px 0;
 }

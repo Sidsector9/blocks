@@ -1,3 +1,7 @@
+@mixin font-primary {
+	font-family: 'Times New Roman', Times, serif;
+}
+
 @mixin reset-input {
 	padding: 0;
 	border: 0;

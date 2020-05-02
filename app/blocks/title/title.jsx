@@ -17,7 +17,7 @@ registerBlockType( 'newsuk/title', {
 			type: 'string',
             source: 'text',
 			selector: '.newsuk__title',
-			// default: '',
+			default: '',
 		},
 	},
 	edit( props ) {
