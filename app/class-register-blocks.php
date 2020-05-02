@@ -27,7 +27,7 @@ class Register_Blocks {
 			'style' => 'newsuk-blocks-css',
 		) );
 
-		register_block_type( 'newsuk/header', array(
+		register_block_type( 'newsuk/banner', array(
 			'editor_script' => 'newsuk-blocks-js',
 			'editor_style' => 'newsuk-blocks-css',
 			'style' => 'newsuk-blocks-css',
