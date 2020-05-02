@@ -1,6 +1,6 @@
 import './banner.scss';
 
-const { Icon, PanelBody, TextControl, RadioControl } = wp.components;
+const { Icon, PanelBody, TextControl, RadioControl, ColorPicker } = wp.components;
 const { registerBlockType } = wp.blocks;
 const {
 	MediaUpload,
@@ -74,6 +74,12 @@ const computeBannerTextPosition = ( position ) => {
 	}
 }
 
+const computeOverlay = ( rgba ) => {
+	return {
+		backgroundColor: `rgba( ${ rgba?.r }, ${ rgba?.g }, ${ rgba?.b }, ${ rgba?.a } )`,
+	}
+};
+
 registerBlockType( 'newsuk/banner', {
 	title: 'Banner',
 	icon: 'universal-access-alt',
@@ -94,10 +100,19 @@ registerBlockType( 'newsuk/banner', {
 		bannerTextPosition: {
 			type: 'string',
 			default: '5',
+		},
+		overlay: {
+			type: 'object',
+			default: {
+				r: 0,
+				g: 0,
+				b: 0,
+				a: 0,
+			}
 		}
 	},
 	edit( props ) {
-		const { attributes: { bannerImage, bannerTitle, bannerSubTitle, bannerTextPosition }, setAttributes, className, isSelected } = props;
+		const { attributes: { bannerImage, bannerTitle, bannerSubTitle, bannerTextPosition, overlay }, setAttributes, className, isSelected } = props;
 
 		return (
 			<>
@@ -136,6 +151,11 @@ registerBlockType( 'newsuk/banner', {
 									] }
 									onChange={ ( value ) => { setAttributes( { bannerTextPosition: value } ) } }
 								/>
+
+								<p>Overlay</p>
+								<ColorPicker
+									onChangeComplete={ ( value ) => { setAttributes( { overlay: value?.rgb } ) } }
+								/>
 							</>
 						) }
 					</PanelBody>
@@ -149,6 +169,7 @@ registerBlockType( 'newsuk/banner', {
 							return isSelected && <div className="newsuk__banner-image-bg" onClick={ open }><Icon icon="camera" /></div>
 						} }
 					/>
+					<div className="newsuk__banner-overlay" style={ computeOverlay( overlay ) }></div>
 					<div className="newsuk__banner-text" style={ computeBannerTextPosition( bannerTextPosition ) }>
 						<div className="newsuk__banner-text-container">
 							<div className="newsuk__banner-text__title">{ bannerTitle }</div>
@@ -160,12 +181,13 @@ registerBlockType( 'newsuk/banner', {
 		);
 	},
 	save( props ) {
-		const { attributes: { bannerImage, bannerTitle, bannerSubTitle, bannerTextPosition } } = props;
+		const { attributes: { bannerImage, bannerTitle, bannerSubTitle, bannerTextPosition, overlay } } = props;
 
 		return (
 			<div className="newsuk__banner-image-bg" style={ {
 				backgroundImage: `url( ${ bannerImage } )`,
 			} }>
+				<div className="newsuk__banner-overlay" style={ computeOverlay( overlay ) }></div>
 				<div className="newsuk__banner-text" style={ computeBannerTextPosition( bannerTextPosition ) }>
 					<div className="newsuk__banner-text-container">
 						<div className="newsuk__banner-text__title">{ bannerTitle }</div>
