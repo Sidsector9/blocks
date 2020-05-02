@@ -5,6 +5,7 @@
 
 .wp-block[data-type="newsuk/banner"] .wp-block-newsuk-banner,
 .wp-block-newsuk-banner {
+	position: relative;
 	height: 0;
 	padding-bottom: 30%;
 	background-color: #e2e2e2;
@@ -23,6 +24,10 @@
 				fill: #FFB900;
 				cursor: pointer;
 			}
+		}
+
+		&__banner-text {
+			color: #fff;
 		}
 	}
 }

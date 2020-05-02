@@ -1,7 +1,7 @@
 import ContentEditable from 'react-contenteditable'
 import './subscription-card.scss';
 
-const { Icon, PanelBody, PanelRow, ToggleControl, TextControl } = wp.components;
+const { Icon, PanelBody, ToggleControl, TextControl } = wp.components;
 const { registerBlockType } = wp.blocks;
 const {
 	MediaUpload,
@@ -59,7 +59,7 @@ registerBlockType( 'newsuk/subscription-card', {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title="My Block Settings" initialOpen={ true }>
+					<PanelBody title="Subscription Card Settings" initialOpen={ true }>
 						<p>Hyperlink</p>
 						<TextControl
 							value={ subscriptionHyperlink }
