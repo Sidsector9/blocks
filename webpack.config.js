@@ -27,6 +27,12 @@ module.exports = {
 					},
 					'css-loader',
 					'sass-loader',
+					{
+						loader: 'sass-resources-loader',
+						options: {
+							resources: [ './app/blocks/_essentials/_essentials.scss' ],
+						}
+					}
 				]
 			}
 		]
