@@ -3,7 +3,7 @@
  * Plugin Name:     Newsuk Blocks
  * Plugin URI:      PLUGIN SITE HERE
  * Description:     PLUGIN DESCRIPTION HERE
- * Author:          YOUR NAME HERE
+ * Author:          Siddharth Thevaril
  * Author URI:      YOUR SITE HERE
  * Text Domain:     newsuk-blocks
  * Domain Path:     /languages

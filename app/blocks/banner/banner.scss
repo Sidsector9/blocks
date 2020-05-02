@@ -11,12 +11,15 @@
 	background-color: #e2e2e2;
 	background-size: cover;
 	background-position: 50% 50%;
+	margin: 4rem 0 4rem 0;
 
 	.newsuk {
 		&__banner-image-bg {
+			position: relative;
 			display: inline-block;
 			margin-left: 20px;
 			margin-top: 20px;
+			z-index: 1;
 
 			svg {
 				width: 40px;
@@ -27,7 +30,40 @@
 		}
 
 		&__banner-text {
+			display: flex;
+			position: absolute;
 			color: #fff;
+			top: 50%;
+			left: 50%;
+			transform: translate( -50%, -50% );
+			width: 1180px;
+			height: 100%;
+			@include font-primary;
+
+			&-container {
+				max-width: 780px;
+				padding: 40px 0;
+			}
+
+			&__title {
+				font-size: 45px;
+				line-height: 1;
+				margin-bottom: 15px;
+			}
+
+			&__subtitle {
+				font-size: 25px;
+			}
 		}
+	}
+}
+
+.newsuk__banner-text-positions > .components-base-control__field {
+	display: flex;
+	flex-flow: row wrap;
+	
+	.components-radio-control__option {
+		width: 33%;
+		text-align: center;
 	}
 }
