@@ -47,7 +47,7 @@
 	}
 
 	&__pack-default-add-button {
-		display: flex !important;
+		display: none !important;
 		flex-flow: row wrap;
 		border: 1px solid;
 		margin: 10px !important;
@@ -58,6 +58,17 @@
 		font-size: 13px;
 		padding: 4px 0;
 		cursor: pointer;
+	}
+
+	&__pack-default-body-list-rows,
+	&__pack-default-more-details-rows {
+		&.is-selected {
+			&:hover {
+				.newsuk__pack-default-add-button {
+					display: flex !important;
+				}
+			}
+		}
 	}
 
 	&__pack-default-body-list-row {

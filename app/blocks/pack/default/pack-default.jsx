@@ -119,7 +119,7 @@ registerBlockType( 'newsuk/pack-default', {
 
 					</div> } */}
 					{ body && <div className="newsuk__pack-default-section newsuk__pack-default-section--body">
-						<div className="newsuk__pack-default-body-list-rows">
+						<div className={ `newsuk__pack-default-body-list-rows ${ isSelected ? 'is-selected' : '' }` }>
 							{
 								bodyListArray.map( ( row, index ) => {
 									return (
@@ -144,8 +144,8 @@ registerBlockType( 'newsuk/pack-default', {
 						</div>
 					</div> }
 					{ moreDetails && <div className="newsuk__pack-default-section newsuk__pack-default-section--more-details">
-						<div className="newsuk__pack-default-more-details-button">Show More</div>
-						<div className="newsuk__pack-default-more-details-rows">
+						<div className="newsuk__pack-default-more-details-button">Hide details</div>
+						<div className={ `newsuk__pack-default-more-details-rows ${ isSelected ? 'is-selected' : '' }` }>
 							{
 								moreDetailsArray.map( ( row, index ) => {
 									return (
