@@ -3,6 +3,7 @@ const { PanelBody, CheckboxControl, Icon } = wp.components;
 const { InspectorControls, MediaUpload } = wp.blockEditor;
 const { registerBlockType } = wp.blocks;
 
+import { removFromArray } from '../../_utility/_utility.jsx';
 import './pack-default.scss';
 
 
@@ -87,6 +88,10 @@ registerBlockType( 'newsuk/pack-default', {
 			} )
 		};
 
+		const removFromArrayWrapper = ( array, index, attribute ) => {
+			setAttributes( { [ attribute ]: removFromArray( array, index ) } );
+		}
+
 		return (
 			<>
 				<InspectorControls>
@@ -119,7 +124,7 @@ registerBlockType( 'newsuk/pack-default', {
 								bodyListArray.map( ( row, index ) => {
 									return (
 										<div className={ `newsuk__pack-default-body-list-row ${ isSelected ? 'is-selected' : '' }` }>
-											<div className="newsuk__pack-default-remove-button" onClick={ addBodyListRow }><Icon icon="plus" size={ 32 } /></div>
+											<div className="newsuk__pack-default-remove-button" onClick={ () => removFromArrayWrapper( bodyListArray, index, 'bodyListArray' ) }><Icon icon="plus" size={ 32 } /></div>
 											<MediaUpload
 												onSelect={ ( value ) => editBodyListRow( value.sizes.full.url, index, 'icon' ) }
 												render={ ( { open } ) => {
@@ -145,7 +150,7 @@ registerBlockType( 'newsuk/pack-default', {
 								moreDetailsArray.map( ( row, index ) => {
 									return (
 										<div className={ `newsuk__pack-default-more-details-row ${ isSelected ? 'is-selected' : '' }` }>
-											<div className="newsuk__pack-default-remove-button" onClick={ addBodyListRow }><Icon icon="plus" size={ 32 } /></div>
+											<div className="newsuk__pack-default-remove-button" onClick={ () => removFromArrayWrapper( moreDetailsArray, index, 'moreDetailsArray' ) }><Icon icon="plus" size={ 32 } /></div>
 											<ContentEditable
 												className="newsuk__pack-default-more-details-title"
 												html={ row.title }

@@ -1,0 +1,1 @@
+export const removFromArray = ( array, key ) => [ ...array ].filter( ( item, index ) => index !== key );
