@@ -2,7 +2,6 @@ import ContentEditable from 'react-contenteditable';
 const { PanelBody, CheckboxControl, Icon } = wp.components;
 const { InspectorControls, MediaUpload } = wp.blockEditor;
 const { registerBlockType } = wp.blocks;
-
 import { removFromArray } from '../../_utility/_utility.jsx';
 import './pack-default.scss';
 
@@ -24,6 +23,16 @@ registerBlockType( 'newsuk/pack-default', {
 			type: 'boolean',
 			default: true,
 		},
+		bannerDetails: {
+			type: 'object',
+			default: {
+				title: 'Pack Title...',
+				price: '£5',
+				frequency: 'a week',
+				subBillingInformation: 'Sub billing information...',
+				image: '',
+			},
+		},
 		moreDetails: {
 			type: 'boolean',
 			default: true,
@@ -43,6 +52,7 @@ registerBlockType( 'newsuk/pack-default', {
 			setAttributes,
 			attributes: {
 				banner,
+				bannerDetails,
 				body,
 				moreDetails,
 				bodyListArray,
@@ -60,8 +70,14 @@ registerBlockType( 'newsuk/pack-default', {
 			} );
 		}
 
+		const editBanner = ( value, property ) => {
+			const temp = { ...bannerDetails };
+			temp[ property ] = value;
+
+			setAttributes( { bannerDetails: temp } );
+		}
+
 		const editBodyListRow = ( value, index, property ) => {
-			console.log( value, index, property )
 			const temp = [ ...bodyListArray ];
 			temp[ index ][ property ] = value;
 
@@ -88,9 +104,11 @@ registerBlockType( 'newsuk/pack-default', {
 			} )
 		};
 
-		const removFromArrayWrapper = ( array, index, attribute ) => {
+		const removeFromArrayWrapper = ( array, index, attribute ) => {
 			setAttributes( { [ attribute ]: removFromArray( array, index ) } );
 		}
+
+		const MediaUploadBox = withMediaUploadBox( MediaUpload );
 
 		return (
 			<>
@@ -115,16 +133,62 @@ registerBlockType( 'newsuk/pack-default', {
 					</PanelBody>
 				</InspectorControls>
 				<div className="newsuk__pack-default">
-					{/* { banner && <div className="newsuk__pack-default-section newsuk__pack-default-section--banner">
-
-					</div> } */}
+					{ banner && <div className="newsuk__pack-default-section newsuk__pack-default-section--banner">
+						<ContentEditable
+							className="newsuk__pack-default-banner-title"
+							html={ bannerDetails.title }
+							onChange={ ( e ) => editBanner( e.target.value, 'title' ) }
+						/>
+						<MediaUploadBox
+							onSelect={ ( value ) => editBanner( value.sizes.full.url, 'image' ) }
+							render={ ( { open } ) => {
+								return ( <div className="newsuk__pack-default-banner-image-wrapper">
+									{ !! bannerDetails.image ? (
+										<div className="newsuk__pack-default-banner-image-container">
+											<div className={ `newsuk__pack-default-banner-image-controls ${ isSelected ? 'is-selected' : '' }` }>
+												<Icon icon="edit" size="64" onClick={ open } />
+												<Icon icon="no" size="64" onClick={ () => {
+													const temp = { ... bannerDetails }
+													temp.image = '';
+													setAttributes( { bannerDetails: temp } )
+												} } />
+											</div>
+											<img src={ bannerDetails.image } />
+										</div> ) : (
+										<div className="newsuk__pack-default-banner-image-placeholder" onClick={ open }>
+											<Icon icon="camera" size="64" />
+										</div> ) }
+								</div> )
+							} }
+						/>
+						<div className="newsuk__pack-default-banner-cost">
+							<ContentEditable
+								className="newsuk__pack-default-banner-price"
+								html={ bannerDetails.price }
+								onChange={ ( e ) => editBanner( e.target.value, 'price' ) }
+								tagName="span"
+							/>
+							<ContentEditable
+								className="newsuk__pack-default-banner-frequency"
+								html={ bannerDetails.frequency }
+								onChange={ ( e ) => editBanner( e.target.value, 'frequency' ) }
+								tagName="span"
+							/>
+						</div>
+						<div className="newsuk__pack-default-banner-billing-information">Billing Information</div>
+						<ContentEditable
+							className="newsuk__pack-default-banner-sub-billing-information"
+							html={ bannerDetails.subBillingInformation }
+							onChange={ ( e ) => editBanner( e.target.value, 'subBillingInformation' ) }
+						/>
+					</div> }
 					{ body && <div className="newsuk__pack-default-section newsuk__pack-default-section--body">
 						<div className={ `newsuk__pack-default-body-list-rows ${ isSelected ? 'is-selected' : '' }` }>
 							{
 								bodyListArray.map( ( row, index ) => {
 									return (
 										<div className={ `newsuk__pack-default-body-list-row ${ isSelected ? 'is-selected' : '' }` }>
-											<div className="newsuk__pack-default-remove-button" onClick={ () => removFromArrayWrapper( bodyListArray, index, 'bodyListArray' ) }><Icon icon="plus" size={ 32 } /></div>
+											<div className="newsuk__pack-default-remove-button" onClick={ () => removeFromArrayWrapper( bodyListArray, index, 'bodyListArray' ) }><Icon icon="plus" size={ 32 } /></div>
 											<MediaUpload
 												onSelect={ ( value ) => editBodyListRow( value.sizes.full.url, index, 'icon' ) }
 												render={ ( { open } ) => {
@@ -144,13 +208,13 @@ registerBlockType( 'newsuk/pack-default', {
 						</div>
 					</div> }
 					{ moreDetails && <div className="newsuk__pack-default-section newsuk__pack-default-section--more-details">
-						<div className="newsuk__pack-default-more-details-button">Hide details</div>
+						{ moreDetails && ( banner || body ) && <div className="newsuk__pack-default-more-details-button">Hide details</div> }
 						<div className={ `newsuk__pack-default-more-details-rows ${ isSelected ? 'is-selected' : '' }` }>
 							{
 								moreDetailsArray.map( ( row, index ) => {
 									return (
 										<div className={ `newsuk__pack-default-more-details-row ${ isSelected ? 'is-selected' : '' }` }>
-											<div className="newsuk__pack-default-remove-button" onClick={ () => removFromArrayWrapper( moreDetailsArray, index, 'moreDetailsArray' ) }><Icon icon="plus" size={ 32 } /></div>
+											<div className="newsuk__pack-default-remove-button" onClick={ () => removeFromArrayWrapper( moreDetailsArray, index, 'moreDetailsArray' ) }><Icon icon="plus" size={ 32 } /></div>
 											<ContentEditable
 												className="newsuk__pack-default-more-details-title"
 												html={ row.title }
@@ -175,18 +239,33 @@ registerBlockType( 'newsuk/pack-default', {
 	save( props ) {
 		const {
 			attributes: {
-				banner,
-				body,
-				moreDetails,
+				bannerDetails,
 				bodyListArray,
 				moreDetailsArray,
 			},
-			className
 		} = props;
 
 		return (
 			<div className="newsuk__pack-default">
-				<div className="newsuk__pack-default-section newsuk__pack-default-section--body">
+				<div className="newsuk__pack-default-section newsuk__pack-default-section--banner">
+					<div className="newsuk__pack-default-banner-title">{ bannerDetails.title }</div>
+					{ !! bannerDetails.image && (
+						<div className="newsuk__pack-default-banner-image-wrapper">
+							<div className="newsuk__pack-default-banner-image-container">
+								<img src={ bannerDetails.image } />
+							</div>
+						</div>
+					) }
+					<div className="newsuk__pack-default-banner-cost">
+						<span className="newsuk__pack-default-banner-price">{ bannerDetails.price }</span>
+						<span className="newsuk__pack-default-banner-frequency">{ bannerDetails.frequency }</span>
+					</div>
+					{ !! bannerDetails.subBillingInformation && <>
+						<div className="newsuk__pack-default-banner-billing-information">Billing Information</div>
+						<div className="newsuk__pack-default-banner-sub-billing-information">{ bannerDetails.subBillingInformation }</div>
+					</> }
+				</div>
+				{ !! bodyListArray && <div className="newsuk__pack-default-section newsuk__pack-default-section--body">
 					<div className="newsuk__pack-default-body-list-rows">
 						{ bodyListArray.map( ( row, index ) => {
 							return (
@@ -197,8 +276,8 @@ registerBlockType( 'newsuk/pack-default', {
 							)
 						} ) }
 					</div>
-				</div>
-				<div className="newsuk__pack-default-section newsuk__pack-default-section--more-details">
+				</div> }
+				{ !! moreDetailsArray && <div className="newsuk__pack-default-section newsuk__pack-default-section--more-details">
 					<div className="newsuk__pack-default-more-details-button">Hide details</div>
 					<div className="newsuk__pack-default-more-details-rows">
 						{ moreDetailsArray.map( ( row, index ) => {
@@ -210,7 +289,7 @@ registerBlockType( 'newsuk/pack-default', {
 							)
 						} ) }
 					</div>
-				</div>
+				</div> }
 			</div>
 		);
 	},

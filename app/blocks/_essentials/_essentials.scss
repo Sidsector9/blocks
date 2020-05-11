@@ -3,6 +3,11 @@
 	src: url( '../../assets/fonts/GillSansW01Medium.woff2' ) format( 'woff2' );
 }
 
+@font-face {
+	font-family: 'tmb';
+	src: url( '../../assets/fonts/TimesModern-Bold.woff' ) format( 'woff' );
+}
+
 body {
 	background-color: #F9F9F9 !important;
 }
