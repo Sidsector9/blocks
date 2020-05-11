@@ -166,6 +166,22 @@
 		cursor: pointer;
 	}
 
+	&__pack-default-body-list-icon-with-controls {
+		position: relative;
+
+		.newsuk__media-upload-control-group {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 32px;
+
+			svg {
+				cursor: pointer;
+			}
+		}
+	}
+
 	&__pack-default-body-list-row {
 		position: relative;
 		display: flex;
@@ -190,6 +206,14 @@
 
 				.newsuk__pack-default-remove-button {
 					display: block;
+				}
+			}
+
+			.newsuk__pack-default-body-list-icon-with-controls {
+				&:hover {
+					.newsuk__media-upload-control-group {
+						display: block;
+					}
 				}
 			}
 		}

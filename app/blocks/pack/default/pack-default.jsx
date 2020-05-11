@@ -1,5 +1,5 @@
 import ContentEditable from 'react-contenteditable';
-const { PanelBody, CheckboxControl, Icon } = wp.components;
+const { PanelBody, CheckboxControl, Icon, Button, ButtonGroup } = wp.components;
 const { InspectorControls, MediaUpload } = wp.blockEditor;
 const { registerBlockType } = wp.blocks;
 import { removFromArray } from '../../_utility/_utility.jsx';
@@ -108,8 +108,6 @@ registerBlockType( 'newsuk/pack-default', {
 			setAttributes( { [ attribute ]: removFromArray( array, index ) } );
 		}
 
-		const MediaUploadBox = withMediaUploadBox( MediaUpload );
-
 		return (
 			<>
 				<InspectorControls>
@@ -139,7 +137,7 @@ registerBlockType( 'newsuk/pack-default', {
 							html={ bannerDetails.title }
 							onChange={ ( e ) => editBanner( e.target.value, 'title' ) }
 						/>
-						<MediaUploadBox
+						<MediaUpload
 							onSelect={ ( value ) => editBanner( value.sizes.full.url, 'image' ) }
 							render={ ( { open } ) => {
 								return ( <div className="newsuk__pack-default-banner-image-wrapper">
@@ -192,7 +190,26 @@ registerBlockType( 'newsuk/pack-default', {
 											<MediaUpload
 												onSelect={ ( value ) => editBodyListRow( value.sizes.full.url, index, 'icon' ) }
 												render={ ( { open } ) => {
-													return <div className="newsuk__pack-default-body-list-icon" onClick={ open }>{ !! row.icon ? <img src={ row.icon } /> : <Icon icon="camera" /> }</div>
+													return (
+														<div className="newsuk__pack-default-body-list-icon">
+															{ !! row.icon ? (
+																<div className="newsuk__pack-default-body-list-icon-with-controls">
+																	<ButtonGroup className="newsuk__media-upload-control-group">
+																		<Icon icon="edit" size="16" onClick={ open } />
+																		<Icon icon="no" size="16" onClick={ () => {
+																			const temp = [ ...bodyListArray ];
+																			temp[ index ].icon = '';
+																			setAttributes( { bodyListArray: temp } );
+																		} } />
+																	</ButtonGroup>
+																	<img src={ row.icon } />
+																</div>
+																) : (
+																	<Icon icon="camera" onClick={ open } />
+																)
+															}
+														</div>
+													);
 												} }
 											/>
 											<ContentEditable
