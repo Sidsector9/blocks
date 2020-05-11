@@ -52,7 +52,6 @@
 		}
 
 		&__subscription-heading {
-			@include font-primary;
 			display: block;
 			width: 100%;
 			font-size: 1.4rem;
@@ -60,7 +59,6 @@
 		}
 
 		&__subscription-description {
-			@include font-primary;
 			display: block;
 			width: 100%;
 			font-size: 1rem;

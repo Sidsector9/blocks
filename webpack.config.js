@@ -7,7 +7,7 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve( __dirname, 'dist' ),
-		filename: 'js/[name].min.js'
+		filename: 'js/[name].min.js',
 	},
 	module: {
 		rules: [
@@ -19,22 +19,40 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.s[ac]ss$/i,
+				test: /\.(scss|sass|css)$/i,
 				use: [
 					// 'style-loader',
 					{
 						loader: MiniCssExtractPlugin.loader
 					},
 					'css-loader',
-					'sass-loader',
+					'resolve-url-loader',
 					{
-						loader: 'sass-resources-loader',
+						loader: 'sass-loader',
 						options: {
-							resources: [ './app/blocks/_essentials/_essentials.scss' ],
+							sourceMap: true,
 						}
-					}
+					},
+					// {
+					// 	loader: 'sass-resources-loader',
+					// 	options: {
+					// 		sourceMap: true,
+					// 		resources: [ './app/blocks/_essentials/_essentials.scss' ],
+					// 	}
+					// },
 				]
-			}
+			},
+			{
+				test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							name: 'fonts/[name].[ext]',
+						},
+					}
+				],
+			},
 		]
 	},
 	plugins: [

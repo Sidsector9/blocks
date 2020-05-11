@@ -27,14 +27,12 @@
 		}
 
 		&__column-title {
-			@include font-primary;
 			font-size: 24px;
 			margin: 10px 0;
 			font-weight: bold;
 		}
 
 		&__column-description {
-			@include font-primary;
 		}
 	}
 }
