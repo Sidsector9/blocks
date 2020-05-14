@@ -3,9 +3,8 @@
 		margin-left: 0 !important;
 		margin-right: 0 !important;
 	}
-}
 
-.wp-block-newsuk-wrapper {
-	padding: 1rem;
-	background-color: tomato;
+	.wp-block-newsuk-wrapper {
+		box-sizing: border-box;
+	}
 }

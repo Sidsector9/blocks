@@ -1,12 +1,13 @@
-.wp-block[data-type="newsuk/title"] {
-	margin-top: 0;
-	margin-bottom: 0;
+.wp-block {
+	.wp-block-newsuk-title {
+
+	}
 }
 
-.wp-block[data-type="newsuk/title"] .wp-block-newsuk-title,
 .wp-block-newsuk-title {
-	font-size: 3rem;
-	text-align: center;
-	width: 100%;
-	margin: 4rem 0;
+	font-family: tmb;
+	font-size: 36px;
+	font-weight: bold;
+	line-height: 45px;
+	color: #000;
 }

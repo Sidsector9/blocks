@@ -1,7 +1,7 @@
 import { blocksWithSharedAttributes } from '../blocks-wth-shared-attributes.jsx';
 const { addFilter } = wp.hooks;
 
-const addBlockVisibilityAttribute = ( settings, name ) => {
+const addSharedAttributes = ( settings, name ) => {
 	if ( ! blocksWithSharedAttributes.includes( name ) ) {
         return settings;
 	}
@@ -10,10 +10,14 @@ const addBlockVisibilityAttribute = ( settings, name ) => {
         blockVisibility: {
             type: 'string',
             default: '3',
+		},
+		maxWidth: {
+            type: 'string',
+            default: '1180',
         },
 	} );
 
     return settings;
 };
 
-addFilter( 'blocks.registerBlockType', 'newsuk/attribute/blockVisibility', addBlockVisibilityAttribute );
+addFilter( 'blocks.registerBlockType', 'newsuk/attribute/sharedAttributes', addSharedAttributes );

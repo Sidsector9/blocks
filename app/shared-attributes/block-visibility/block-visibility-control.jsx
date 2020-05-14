@@ -5,14 +5,14 @@ const { InspectorControls } = wp.blockEditor;
 const { PanelBody, RadioControl } = wp.components;
 const { addFilter } = wp.hooks;
 
-const withBlockVisibilityControl = createHigherOrderComponent( ( BlockWithASharedAttribute ) => {
+const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithASharedAttribute ) => {
 	return ( props ) => {
 
 		if ( ! blocksWithSharedAttributes.includes( props.name ) ) {
 			return <BlockWithASharedAttribute { ...props } />;
 		}
 
-		const { attributes: { blockVisibility }, setAttributes } = props;
+		const { attributes: { blockVisibility, maxWidth }, setAttributes } = props;
 
 		return (
 			<>
@@ -28,7 +28,18 @@ const withBlockVisibilityControl = createHigherOrderComponent( ( BlockWithAShare
 								{ label: 'Only to logged off users', value: '2' },
 								{ label: 'To everyone', value: '3' },
 							] }
-							onChange={ ( value ) => { setAttributes( { blockVisibility: value } ) } }
+							onChange={ ( blockVisibility ) => { setAttributes( { blockVisibility } ) } }
+						/>
+
+						<p>Max width</p>
+						<RadioControl
+							className="newsuk__banner-block-visibility"
+							selected={ maxWidth }
+							options={ [
+								{ label: 'Wide ( 1180px )', value: '1180' },
+								{ label: 'Medium ( 780px )', value: '780' },
+							] }
+							onChange={ ( maxWidth ) => { setAttributes( { maxWidth } ) } }
 						/>
 					</PanelBody>
 				</InspectorControls>
@@ -36,6 +47,6 @@ const withBlockVisibilityControl = createHigherOrderComponent( ( BlockWithAShare
 			</>
 		);
 	}
-}, 'withBlockVisibilityControl' );
+}, 'withSharedAttributesControl' );
 
-addFilter( 'editor.BlockEdit', 'newsuk/block-visibility-control', withBlockVisibilityControl, 1 );
+addFilter( 'editor.BlockEdit', 'newsuk/block-visibility-control', withSharedAttributesControl, 1 );

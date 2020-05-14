@@ -22,7 +22,7 @@ registerBlockType( 'newsuk/wrapper', {
 		}
 	},
 	edit( props ) {
-		const { className, attributes: { maxWidth }, setAttributes } = props;
+		const { className, attributes: { maxWidth }, setAttributes, isSelected } = props;
 
 		const STYLE_WRAPPER = {
 			maxWidth: `${ maxWidth }px`,
@@ -42,7 +42,7 @@ registerBlockType( 'newsuk/wrapper', {
 				</InspectorControls>
 				<div className={ className } style={ STYLE_WRAPPER }>
 					<InnerBlocks
-						renderAppender={ () => <InnerBlocks.ButtonBlockAppender /> }
+						renderAppender={ () => isSelected ? <InnerBlocks.ButtonBlockAppender /> : false }
 					/>
 				</div>
 			</>

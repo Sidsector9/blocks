@@ -26,7 +26,7 @@ registerBlockType( 'newsuk/row', {
 		}
 	},
 	edit( props ) {
-		const { className, attributes: { color }, setAttributes } = props;
+		const { className, attributes: { color }, setAttributes, isSelected } = props;
 
 		const STYLE_ROW = {
 			backgroundColor: `rgba( ${ Object.values( color ).join( ',' ) } )`,
@@ -47,7 +47,7 @@ registerBlockType( 'newsuk/row', {
 				</InspectorControls>
 				<div className={ className } style={ STYLE_ROW }>
 					<InnerBlocks
-						renderAppender={ () => <InnerBlocks.ButtonBlockAppender /> }
+						renderAppender={ () => isSelected ? <InnerBlocks.ButtonBlockAppender /> : false }
 					/>
 				</div>
 			</>

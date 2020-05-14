@@ -2,41 +2,62 @@ import ContentEditable from 'react-contenteditable'
 import './title.scss';
 
 const { registerBlockType } = wp.blocks;
+const { RichText, BlockControls, AlignmentToolbar } = wp.blockEditor;
 
 registerBlockType( 'newsuk/title', {
 	title: 'Title',
 	icon: 'universal-access-alt',
 	category: 'newsuk',
 	supports: {
-		align: true,
+		align: ['full'],
 	},
 	attributes: {
 		titleText: {
 			type: 'string',
-            source: 'text',
+            source: 'html',
 			selector: '.newsuk__title',
 			default: '',
 		},
 		align: {
 			type: 'string',
 			default: 'full',
-		}
+		},
+		alignment: {
+            type: 'string',
+            default: 'none',
+        },
 	},
 	edit( props ) {
-		const { attributes: { titleText }, setAttributes, className } = props;
+		const { attributes: { titleText, alignment }, setAttributes, className } = props;
 
 		return (
-			<ContentEditable
-				className={ className }
-				html={ titleText }
-				onChange={ ( e ) => setAttributes( { titleText: e.target.value } ) }
-			/>
+			<>
+				<BlockControls>
+					<AlignmentToolbar
+						value={ alignment }
+						onChange={ ( newAlignment ) => setAttributes( { alignment: newAlignment === undefined ? 'none' : newAlignment } ) }
+					/>
+				</BlockControls>
+				<RichText
+					tagName="div"
+					style={ { textAlign: alignment } }
+					value={ titleText }
+					className={ className }
+					onChange={ ( titleText ) => setAttributes( { titleText } ) }
+				/>
+			</>
 		);
 	},
 	save( props ) {
-		const { attributes: { titleText } } = props;
+		const { attributes: { titleText, alignment } } = props;
+
 		return (
-			<div className="newsuk__title" dangerouslySetInnerHTML={ { __html: titleText } } />
+			<RichText.Content
+				tagName="div"
+				style={ { textAlign: alignment } }
+				className="newsuk__title"
+				value={ titleText }
+			/>
 		);
 	},
 } );
