@@ -1,0 +1,11 @@
+.wp-block {
+	&[data-type="newsuk/wrapper"] {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+}
+
+.wp-block-newsuk-wrapper {
+	padding: 1rem;
+	background-color: tomato;
+}

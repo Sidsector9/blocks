@@ -17,6 +17,10 @@ registerBlockType( 'newsuk/title', {
 			selector: '.newsuk__title',
 			default: '',
 		},
+		align: {
+			type: 'string',
+			default: 'full',
+		}
 	},
 	edit( props ) {
 		const { attributes: { titleText }, setAttributes, className } = props;
