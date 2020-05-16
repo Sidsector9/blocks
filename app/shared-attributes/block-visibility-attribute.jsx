@@ -1,4 +1,4 @@
-import { blocksWithSharedAttributes } from '../blocks-wth-shared-attributes.jsx';
+import { blocksWithSharedAttributes } from './blocks-wth-shared-attributes.jsx';
 const { addFilter } = wp.hooks;
 
 const addSharedAttributes = ( settings, name ) => {

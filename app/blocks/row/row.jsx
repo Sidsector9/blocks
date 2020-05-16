@@ -45,7 +45,7 @@ registerBlockType( 'newsuk/row', {
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<div className={ className } style={ STYLE_ROW }>
+				<div className="wp-block-newsuk-row--editor" style={ STYLE_ROW }>
 					<InnerBlocks
 						renderAppender={ () => isSelected ? <InnerBlocks.ButtonBlockAppender /> : false }
 					/>

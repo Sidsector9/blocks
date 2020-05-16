@@ -1,6 +1,6 @@
 import ContentEditable from 'react-contenteditable';
-const { PanelBody, CheckboxControl, Icon, Button, ButtonGroup } = wp.components;
-const { InspectorControls, MediaUpload } = wp.blockEditor;
+const { PanelBody, CheckboxControl, Icon, ButtonGroup } = wp.components;
+const { InspectorControls, MediaUpload, RichText } = wp.blockEditor;
 const { registerBlockType } = wp.blocks;
 import { removFromArray } from '../../_utility/_utility.jsx';
 import './pack-default.scss';
@@ -33,6 +33,12 @@ registerBlockType( 'newsuk/pack-default', {
 				image: '',
 			},
 		},
+		cta: {
+			type: 'string',
+            source: 'html',
+			selector: '.newsuk__pack-default-cta-button',
+			default: '',
+		},
 		moreDetails: {
 			type: 'boolean',
 			default: true,
@@ -57,6 +63,7 @@ registerBlockType( 'newsuk/pack-default', {
 				moreDetails,
 				bodyListArray,
 				moreDetailsArray,
+				cta,
 			},
 			isSelected
 		} = props;
@@ -173,6 +180,13 @@ registerBlockType( 'newsuk/pack-default', {
 								tagName="span"
 							/>
 						</div>
+						<RichText
+							tagName="div"
+							className="newsuk__pack-default-cta-button"
+							value={ cta }
+							onChange={ ( cta ) => setAttributes( { cta } ) }
+							placeholder="Add CTA text"
+						/>
 						<div className="newsuk__pack-default-banner-billing-information">Billing Information</div>
 						<ContentEditable
 							className="newsuk__pack-default-banner-sub-billing-information"
@@ -259,6 +273,7 @@ registerBlockType( 'newsuk/pack-default', {
 				bannerDetails,
 				bodyListArray,
 				moreDetailsArray,
+				cta
 			},
 		} = props;
 
@@ -277,6 +292,11 @@ registerBlockType( 'newsuk/pack-default', {
 						<span className="newsuk__pack-default-banner-price">{ bannerDetails.price }</span>
 						<span className="newsuk__pack-default-banner-frequency">{ bannerDetails.frequency }</span>
 					</div>
+					<RichText.Content
+						tagName="div"
+						className="newsuk__pack-default-cta-button"
+						value={ cta }
+					/>
 					{ !! bannerDetails.subBillingInformation && <>
 						<div className="newsuk__pack-default-banner-billing-information">Billing Information</div>
 						<div className="newsuk__pack-default-banner-sub-billing-information">{ bannerDetails.subBillingInformation }</div>

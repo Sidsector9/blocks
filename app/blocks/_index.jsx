@@ -1,7 +1,7 @@
 /**
  * Common attributes
  */
-import '../shared-attributes/block-visibility/_index.jsx';
+import '../shared-attributes/_index.jsx';
 
 /**
  * Blocks
@@ -13,3 +13,4 @@ import './title/title.jsx';
 import './pack/default/pack-default.jsx';
 import './row/row.jsx';
 import './wrapper/wrapper.jsx';
+import './accordion/_accordion.jsx';

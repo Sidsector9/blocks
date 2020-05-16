@@ -1,13 +1,31 @@
-.wp-block {
-	.wp-block-newsuk-title {
-
-	}
+/**
+ * block container
+ */
+ .wp-block[data-type="newsuk/title"] {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
-.wp-block-newsuk-title {
+/**
+ * common styles
+ */
+.wp-block-newsuk-title,
+.wp-block-newsuk-title--editor {
 	font-family: tmb;
 	font-size: 36px;
-	font-weight: bold;
 	line-height: 45px;
 	color: #000;
+	margin-bottom: 40px;
+}
+
+/**
+ * back end
+ */
+.wp-block-newsuk-title--editor {
+}
+
+/**
+ * front end
+ */
+.wp-block-newsuk-title {
 }

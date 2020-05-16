@@ -1,10 +1,30 @@
-.wp-block {
-	.wp-block-newsuk-row {
-		padding: 4rem 58px;
-	}
+/**
+ * block container
+ */
+.wp-block[data-type="newsuk/row"] {
 }
 
+/**
+ * Common styles
+ */
+.wp-block-newsuk-row,
+.wp-block-newsuk-row--editor {
+	overflow: hidden;
+	padding-top: 40px;
+	margin-bottom: 40px;
+}
+
+/**
+ * editor
+ */
+.wp-block-newsuk-row--editor {
+	padding-left: 58px;
+	padding-right: 58px;
+}
+
+/**
+ * front end
+ */
 .wp-block-newsuk-row {
-	padding: 4rem 1rem;
-	background-color: lightblue;
+
 }

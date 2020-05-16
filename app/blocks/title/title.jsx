@@ -1,8 +1,7 @@
-import ContentEditable from 'react-contenteditable'
-import './title.scss';
-
 const { registerBlockType } = wp.blocks;
 const { RichText, BlockControls, AlignmentToolbar } = wp.blockEditor;
+
+import './title.scss';
 
 registerBlockType( 'newsuk/title', {
 	title: 'Title',
@@ -28,7 +27,15 @@ registerBlockType( 'newsuk/title', {
         },
 	},
 	edit( props ) {
-		const { attributes: { titleText, alignment }, setAttributes, className } = props;
+		const { attributes: { titleText, alignment, maxWidth }, setAttributes, className } = props;
+
+		const STYLE_TITLE = {
+			maxWidth: `${ maxWidth }px`,
+			width: '100%',
+			marginLeft: 'auto',
+			marginRight: 'auto',
+			textAlign: alignment,
+		};
 
 		return (
 			<>
@@ -40,21 +47,29 @@ registerBlockType( 'newsuk/title', {
 				</BlockControls>
 				<RichText
 					tagName="div"
-					style={ { textAlign: alignment } }
+					style={ STYLE_TITLE }
 					value={ titleText }
-					className={ className }
+					className="wp-block-newsuk-title--editor"
 					onChange={ ( titleText ) => setAttributes( { titleText } ) }
 				/>
 			</>
 		);
 	},
 	save( props ) {
-		const { attributes: { titleText, alignment } } = props;
+		const { attributes: { titleText, alignment, maxWidth } } = props;
+
+		const STYLE_TITLE = {
+			maxWidth: `${ maxWidth }px`,
+			width: '100%',
+			marginLeft: 'auto',
+			marginRight: 'auto',
+			textAlign: alignment,
+		};
 
 		return (
 			<RichText.Content
 				tagName="div"
-				style={ { textAlign: alignment } }
+				style={ STYLE_TITLE }
 				className="newsuk__title"
 				value={ titleText }
 			/>

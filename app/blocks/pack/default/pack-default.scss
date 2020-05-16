@@ -104,6 +104,28 @@
 		color: #a9a9a9;
 	}
 
+	&__pack-default-cta-button {
+		background: #00AAAD;
+		border-radius: 4px;
+		color: #FFF;
+		letter-spacing: 0.38px;
+		text-align: center;
+		display: block;
+		padding: 10px 0;
+		font-size: 15px;
+		font-family: gsm;
+		margin: 20px;
+		margin-top: 0;
+		text-decoration: none;
+		cursor: pointer;
+
+		&:hover {
+			background: #009194;
+			color: #FFF;
+			text-decoration: none;
+		}
+	}
+
 	&__pack-default-banner-billing-information {
 		font-family: gsm;
 		font-size: 13px;

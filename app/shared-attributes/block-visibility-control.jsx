@@ -1,4 +1,4 @@
-import { blocksWithSharedAttributes } from '../blocks-wth-shared-attributes.jsx';
+import { blocksWithSharedAttributes } from './blocks-wth-shared-attributes.jsx';
 
 const { createHigherOrderComponent } = wp.compose;
 const { InspectorControls } = wp.blockEditor;
@@ -13,6 +13,12 @@ const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithAShar
 		}
 
 		const { attributes: { blockVisibility, maxWidth }, setAttributes } = props;
+		const isCoreBlock = props.name.includes( 'core/' ) ? props.name : false;
+		const STYLE_CORE_BL = {
+			maxWidth: `${ maxWidth }px`,
+			marginLeft: 'auto',
+			marginRight: 'auto',
+		};
 
 		return (
 			<>
@@ -43,10 +49,37 @@ const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithAShar
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<BlockWithASharedAttribute { ...props } />
+
+				{ isCoreBlock ? (
+					<div className={ `wp-block-${ props.name.split( '/' ).join( '-' ) }` } style={ STYLE_CORE_BL }>
+						<BlockWithASharedAttribute { ...props } />
+					</div>
+				) : <BlockWithASharedAttribute { ...props } /> }
 			</>
 		);
 	}
 }, 'withSharedAttributesControl' );
 
 addFilter( 'editor.BlockEdit', 'newsuk/block-visibility-control', withSharedAttributesControl, 1 );
+
+function addWrapperToSelectedCoreBlocksOnSave( element, blockType, attributes ) {
+	if ( ! blocksWithSharedAttributes.includes( blockType.name ) || ! blockType.name.includes( 'core/' ) ) {
+		return element;
+	}
+
+	const { maxWidth } = attributes;
+	const STYLE_CORE_BL = {
+		maxWidth: `${ maxWidth }px`,
+		marginLeft: 'auto',
+		marginRight: 'auto',
+		marginBottom: '40px',
+	};
+
+	return (
+        <div className={ `sidlol wp-block-${ blockType.name.split( '/' ).join( '-' ) }` } style={ STYLE_CORE_BL }>
+			{ element }
+        </div>
+    );
+}
+
+wp.hooks.addFilter( 'blocks.getSaveElement', 'extend-block-example/custom-save', addWrapperToSelectedCoreBlocksOnSave );

@@ -8,15 +8,13 @@
 	src: url( '../../assets/fonts/TimesModern-Bold.woff' ) format( 'woff' );
 }
 
-body {
-	background-color: #F9F9F9 !important;
+@font-face {
+	font-family: 'tmr';
+	src: url( '../../assets/fonts/TimesDigital-Regular.woff' ) format( 'woff' );
 }
 
-.entry-content,
-.wp-block[data-align=wide] {
-	// max-width: 1150px;
-	// width: 100%;
-	// margin: 0 auto !important;
+body {
+	background-color: #F9F9F9 !important;
 }
 
 .alignfull {
