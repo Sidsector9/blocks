@@ -1,5 +1,5 @@
 import ContentEditable from 'react-contenteditable';
-const { PanelBody, CheckboxControl, Icon, ButtonGroup } = wp.components;
+const { PanelBody, CheckboxControl, Icon, ButtonGroup, TextControl, Popover } = wp.components;
 const { InspectorControls, MediaUpload, RichText } = wp.blockEditor;
 const { registerBlockType } = wp.blocks;
 import { removFromArray } from '../../_utility/_utility.jsx';
@@ -33,10 +33,16 @@ registerBlockType( 'newsuk/pack-default', {
 				image: '',
 			},
 		},
-		cta: {
+		ctaPopover: {
+			type: 'boolean',
+			default: false,
+		},
+		ctaText: {
 			type: 'string',
-            source: 'html',
-			selector: '.newsuk__pack-default-cta-button',
+			default: '',
+		},
+		ctaUrl: {
+			type: 'string',
 			default: '',
 		},
 		moreDetails: {
@@ -63,7 +69,9 @@ registerBlockType( 'newsuk/pack-default', {
 				moreDetails,
 				bodyListArray,
 				moreDetailsArray,
-				cta,
+				ctaPopover,
+				ctaText,
+				ctaUrl,
 			},
 			isSelected
 		} = props;
@@ -180,13 +188,23 @@ registerBlockType( 'newsuk/pack-default', {
 								tagName="span"
 							/>
 						</div>
-						<RichText
-							tagName="div"
-							className="newsuk__pack-default-cta-button"
-							value={ cta }
-							onChange={ ( cta ) => setAttributes( { cta } ) }
-							placeholder="Add CTA text"
-						/>
+						<div className="newsuk__pack-default-cta-button" onClick={ () => setAttributes( { ctaPopover: true } ) }>
+							{ ctaPopover && ( <Popover onFocusOutside={ () => setAttributes( { ctaPopover: ! ctaPopover } ) }>
+								<PanelBody>
+								<TextControl
+									placeholder="CTA Text"
+									value={ ctaText }
+									onChange={ ( ctaText ) => setAttributes( { ctaText } ) }
+								/>
+								<TextControl
+									placeholder="CTA URL"
+									value={ ctaUrl }
+									onChange={ ( ctaUrl ) => setAttributes( { ctaUrl } ) }
+								/>
+								</PanelBody>
+							</Popover> ) }
+							{ !! ctaText ? ctaText : 'Click to edit...' }
+						</div>
 						<div className="newsuk__pack-default-banner-billing-information">Billing Information</div>
 						<ContentEditable
 							className="newsuk__pack-default-banner-sub-billing-information"
@@ -273,7 +291,8 @@ registerBlockType( 'newsuk/pack-default', {
 				bannerDetails,
 				bodyListArray,
 				moreDetailsArray,
-				cta
+				ctaText,
+				ctaUrl
 			},
 		} = props;
 
@@ -292,11 +311,9 @@ registerBlockType( 'newsuk/pack-default', {
 						<span className="newsuk__pack-default-banner-price">{ bannerDetails.price }</span>
 						<span className="newsuk__pack-default-banner-frequency">{ bannerDetails.frequency }</span>
 					</div>
-					<RichText.Content
-						tagName="div"
-						className="newsuk__pack-default-cta-button"
-						value={ cta }
-					/>
+					<div className="cont">
+						<a className="newsuk__pack-default-cta-button" href={ ctaUrl }>{ ctaText }</a>
+					</div>
 					{ !! bannerDetails.subBillingInformation && <>
 						<div className="newsuk__pack-default-banner-billing-information">Billing Information</div>
 						<div className="newsuk__pack-default-banner-sub-billing-information">{ bannerDetails.subBillingInformation }</div>
