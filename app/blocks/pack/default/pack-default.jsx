@@ -7,6 +7,7 @@ const {
 	ButtonGroup,
 	TextControl,
 	ToggleControl,
+	ColorPicker,
 	Popover,
 } = wp.components;
 const { useState } = wp.element;
@@ -90,6 +91,13 @@ registerBlockType( 'newsuk/pack-default', {
 			isSelected
 		} = props;
 
+		const [ isPopoverVisible, setIsPopoverVisible ] = useState( false );
+
+		const STYLE_CTA = {
+			color: fgColor,
+			backgroundColor: bgColor,
+		}
+
 		const addBodyListRow = () => {
 			setAttributes( {
 				bodyListArray: [ ...bodyListArray, {
@@ -142,8 +150,6 @@ registerBlockType( 'newsuk/pack-default', {
 		const removeFromArrayWrapper = ( array, index, attribute ) => {
 			setAttributes( { [ attribute ]: removFromArray( array, index ) } );
 		}
-
-		const [ isPopoverVisible, setIsPopoverVisible ] = useState( false );
 
 		return (
 			<>
@@ -210,7 +216,7 @@ registerBlockType( 'newsuk/pack-default', {
 								tagName="span"
 							/>
 						</div>
-						<div className="newsuk__pack-default-cta-button" onClick={ ( e ) => e.target.classList.contains( 'newsuk__pack-default-cta-button' ) && setIsPopoverVisible( ! isPopoverVisible ) }>
+						<div style={ STYLE_CTA } className="newsuk__pack-default-cta-button" onClick={ ( e ) => e.target.classList.contains( 'newsuk__pack-default-cta-button' ) && setIsPopoverVisible( ! isPopoverVisible ) }>
 							{ isPopoverVisible && ( <Popover position="bottom" onFocusOutside={ () => setIsPopoverVisible( ! isPopoverVisible ) }>
 									<PanelBody title="Title and URL" initialOpen={ true }>
 										<TextControl
@@ -230,7 +236,18 @@ registerBlockType( 'newsuk/pack-default', {
 										/>
 									</PanelBody>
 									<PanelBody title="Colors" initialOpen={ false }>
-										LOL
+										<p>Background Color</p>
+										<ColorPicker
+											color={ bgColor }
+											onChangeComplete={ ( color ) => editCta( color?.hex, 'bgColor' ) }
+											disableAlpha
+										/>
+										<p>Text Color</p>
+										<ColorPicker
+											color={ fgColor }
+											onChangeComplete={ ( color ) => editCta( color?.hex, 'fgColor' ) }
+											disableAlpha
+										/>
 									</PanelBody>
 							</Popover> ) }
 							{ !! ctaText ? ctaText : 'Click to edit...' }
@@ -324,10 +341,16 @@ registerBlockType( 'newsuk/pack-default', {
 				cta: {
 					ctaText,
 					ctaUrl,
-					extLink,
+					fgColor,
+					bgColor,
 				}
 			},
 		} = props;
+
+		const STYLE_CTA = {
+			color: fgColor,
+			backgroundColor: bgColor,
+		}
 
 		return (
 			<div className="newsuk__pack-default">
@@ -345,7 +368,7 @@ registerBlockType( 'newsuk/pack-default', {
 						<span className="newsuk__pack-default-banner-frequency">{ bannerDetails.frequency }</span>
 					</div>
 					<div>
-						<a className="newsuk__pack-default-cta-button" href={ ctaUrl }>{ ctaText }</a>
+						<a style={ STYLE_CTA } className="newsuk__pack-default-cta-button" href={ ctaUrl }>{ ctaText }</a>
 					</div>
 					{ !! bannerDetails.subBillingInformation && <>
 						<div className="newsuk__pack-default-banner-billing-information">Billing Information</div>
