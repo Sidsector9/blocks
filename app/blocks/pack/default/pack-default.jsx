@@ -1,18 +1,15 @@
 import ContentEditable from 'react-contenteditable';
 const {
-	Panel,
 	PanelRow,
 	PanelBody,
 	CheckboxControl,
 	Icon,
 	ButtonGroup,
 	TextControl,
+	ToggleControl,
 	Popover,
-	Card,
-	CardHeader,
-	CardBody,
-	CardDivider,
 } = wp.components;
+const { useState } = wp.element;
 const { InspectorControls, MediaUpload, RichText } = wp.blockEditor;
 const { registerBlockType } = wp.blocks;
 import { removFromArray } from '../../_utility/_utility.jsx';
@@ -52,7 +49,10 @@ registerBlockType( 'newsuk/pack-default', {
 				ctaPopover: false,
 				ctaText: '',
 				ctaUrl: '',
-			}
+				bgColor: '#00AAAD',
+				fgColor: '#ffffff',
+				extLink: false,
+			},
 		},
 		moreDetails: {
 			type: 'boolean',
@@ -78,9 +78,14 @@ registerBlockType( 'newsuk/pack-default', {
 				moreDetails,
 				bodyListArray,
 				moreDetailsArray,
-				cta: { ctaPopover,
-				ctaText,
-				ctaUrl },
+				cta: {
+					ctaPopover,
+					ctaText,
+					ctaUrl,
+					fgColor,
+					bgColor,
+					extLink,
+				},
 			},
 			isSelected
 		} = props;
@@ -137,6 +142,8 @@ registerBlockType( 'newsuk/pack-default', {
 		const removeFromArrayWrapper = ( array, index, attribute ) => {
 			setAttributes( { [ attribute ]: removFromArray( array, index ) } );
 		}
+
+		const [ isPopoverVisible, setIsPopoverVisible ] = useState( false );
 
 		return (
 			<>
@@ -203,9 +210,9 @@ registerBlockType( 'newsuk/pack-default', {
 								tagName="span"
 							/>
 						</div>
-						<div className="newsuk__pack-default-cta-button" onClick={ () => editCta( true, 'ctaPopover' ) }>
-							{ ctaPopover && ( <Popover position="bottom" onFocusOutside={ () => editCta( false, 'ctaPopover' ) }>
-									<PanelBody title="Title and text" initialOpen={ false }>
+						<div className="newsuk__pack-default-cta-button" onClick={ ( e ) => e.target.classList.contains( 'newsuk__pack-default-cta-button' ) && setIsPopoverVisible( ! isPopoverVisible ) }>
+							{ isPopoverVisible && ( <Popover position="bottom" onFocusOutside={ () => setIsPopoverVisible( ! isPopoverVisible ) }>
+									<PanelBody title="Title and URL" initialOpen={ true }>
 										<TextControl
 											placeholder="CTA Text"
 											value={ ctaText }
@@ -215,6 +222,11 @@ registerBlockType( 'newsuk/pack-default', {
 											placeholder="CTA URL"
 											value={ ctaUrl }
 											onChange={ ( ctaUrl ) => editCta( ctaUrl, 'ctaUrl' ) }
+										/>
+										<ToggleControl
+											label="External link"
+											checked={ extLink }
+											onChange={ ( value ) => editCta( value, 'extLink' ) }
 										/>
 									</PanelBody>
 									<PanelBody title="Colors" initialOpen={ false }>
@@ -309,8 +321,11 @@ registerBlockType( 'newsuk/pack-default', {
 				bannerDetails,
 				bodyListArray,
 				moreDetailsArray,
-				cta: { ctaText,
-				ctaUrl }
+				cta: {
+					ctaText,
+					ctaUrl,
+					extLink,
+				}
 			},
 		} = props;
 
@@ -329,7 +344,7 @@ registerBlockType( 'newsuk/pack-default', {
 						<span className="newsuk__pack-default-banner-price">{ bannerDetails.price }</span>
 						<span className="newsuk__pack-default-banner-frequency">{ bannerDetails.frequency }</span>
 					</div>
-					<div className="cont">
+					<div>
 						<a className="newsuk__pack-default-cta-button" href={ ctaUrl }>{ ctaText }</a>
 					</div>
 					{ !! bannerDetails.subBillingInformation && <>
