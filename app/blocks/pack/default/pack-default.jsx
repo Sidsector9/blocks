@@ -1,5 +1,18 @@
 import ContentEditable from 'react-contenteditable';
-const { PanelBody, CheckboxControl, Icon, ButtonGroup, TextControl, Popover } = wp.components;
+const {
+	Panel,
+	PanelRow,
+	PanelBody,
+	CheckboxControl,
+	Icon,
+	ButtonGroup,
+	TextControl,
+	Popover,
+	Card,
+	CardHeader,
+	CardBody,
+	CardDivider,
+} = wp.components;
 const { InspectorControls, MediaUpload, RichText } = wp.blockEditor;
 const { registerBlockType } = wp.blocks;
 import { removFromArray } from '../../_utility/_utility.jsx';
@@ -33,17 +46,13 @@ registerBlockType( 'newsuk/pack-default', {
 				image: '',
 			},
 		},
-		ctaPopover: {
-			type: 'boolean',
-			default: false,
-		},
-		ctaText: {
-			type: 'string',
-			default: '',
-		},
-		ctaUrl: {
-			type: 'string',
-			default: '',
+		cta: {
+			type: 'object',
+			default: {
+				ctaPopover: false,
+				ctaText: '',
+				ctaUrl: '',
+			}
 		},
 		moreDetails: {
 			type: 'boolean',
@@ -69,9 +78,9 @@ registerBlockType( 'newsuk/pack-default', {
 				moreDetails,
 				bodyListArray,
 				moreDetailsArray,
-				ctaPopover,
+				cta: { ctaPopover,
 				ctaText,
-				ctaUrl,
+				ctaUrl },
 			},
 			isSelected
 		} = props;
@@ -118,6 +127,12 @@ registerBlockType( 'newsuk/pack-default', {
 				moreDetailsArray: temp,
 			} )
 		};
+
+		const editCta = ( value, property ) => {
+			const temp = { ...props.attributes.cta };
+			temp[ property ] = value;
+			setAttributes( { cta: temp } );
+		}
 
 		const removeFromArrayWrapper = ( array, index, attribute ) => {
 			setAttributes( { [ attribute ]: removFromArray( array, index ) } );
@@ -188,20 +203,23 @@ registerBlockType( 'newsuk/pack-default', {
 								tagName="span"
 							/>
 						</div>
-						<div className="newsuk__pack-default-cta-button" onClick={ () => setAttributes( { ctaPopover: true } ) }>
-							{ ctaPopover && ( <Popover onFocusOutside={ () => setAttributes( { ctaPopover: ! ctaPopover } ) }>
-								<PanelBody>
-								<TextControl
-									placeholder="CTA Text"
-									value={ ctaText }
-									onChange={ ( ctaText ) => setAttributes( { ctaText } ) }
-								/>
-								<TextControl
-									placeholder="CTA URL"
-									value={ ctaUrl }
-									onChange={ ( ctaUrl ) => setAttributes( { ctaUrl } ) }
-								/>
-								</PanelBody>
+						<div className="newsuk__pack-default-cta-button" onClick={ () => editCta( true, 'ctaPopover' ) }>
+							{ ctaPopover && ( <Popover position="bottom" onFocusOutside={ () => editCta( false, 'ctaPopover' ) }>
+									<PanelBody title="Title and text" initialOpen={ false }>
+										<TextControl
+											placeholder="CTA Text"
+											value={ ctaText }
+											onChange={ ( ctaText ) => editCta( ctaText, 'ctaText' ) }
+										/>
+										<TextControl
+											placeholder="CTA URL"
+											value={ ctaUrl }
+											onChange={ ( ctaUrl ) => editCta( ctaUrl, 'ctaUrl' ) }
+										/>
+									</PanelBody>
+									<PanelBody title="Colors" initialOpen={ false }>
+										LOL
+									</PanelBody>
 							</Popover> ) }
 							{ !! ctaText ? ctaText : 'Click to edit...' }
 						</div>
@@ -291,8 +309,8 @@ registerBlockType( 'newsuk/pack-default', {
 				bannerDetails,
 				bodyListArray,
 				moreDetailsArray,
-				ctaText,
-				ctaUrl
+				cta: { ctaText,
+				ctaUrl }
 			},
 		} = props;
 
