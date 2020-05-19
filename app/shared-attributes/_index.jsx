@@ -1,2 +1,2 @@
-import './block-visibility-attribute.jsx';
-import './block-visibility-control.jsx';
+import './shared-attribute.jsx';
+import './shared-control.jsx';

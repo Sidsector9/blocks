@@ -20,12 +20,16 @@ const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithAShar
 			},
 			setAttributes
 		} = props;
+
 		const isCoreBlock = props.name.includes( 'core/' ) ? props.name : false;
+
 		const STYLE_CORE_BL = {
 			maxWidth: `${ maxWidth }px`,
 			marginLeft: 'auto',
 			marginRight: 'auto',
+			marginBottom: 0 === marginBottom ? undefined : `${ marginBottom }px`,
 		};
+
 		const maxWidthExcludedBlocks = [ 'newsuk/row' ];
 
 		return (
@@ -90,11 +94,16 @@ function addWrapperToSelectedCoreBlocksOnSave( element, blockType, attributes ) 
 		return element;
 	}
 
-	const { maxWidth } = attributes;
+	const {
+		maxWidth,
+		marginBottom
+	} = attributes;
+
 	const STYLE_CORE_BL = {
 		maxWidth: `${ maxWidth }px`,
 		marginLeft: 'auto',
 		marginRight: 'auto',
+		marginBottom: 0 === marginBottom ? undefined : `${ marginBottom }px`,
 	};
 
 	return (
