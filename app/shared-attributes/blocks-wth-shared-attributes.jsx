@@ -6,5 +6,6 @@ export const blocksWithSharedAttributes = [
 	'newsuk/accordion-item',
 	'newsuk/subscription-card',
 	'newsuk/row',
-	'core/columns'
+	'core/columns',
+	'newsuk/banner-left',
 ];

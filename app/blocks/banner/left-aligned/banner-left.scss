@@ -1,0 +1,54 @@
+/**
+ * block container
+ */
+ .wp-block[data-type="newsuk/banner-left"] {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+/**
+ * common styles
+ */
+.wp-block-newsuk-banner-left,
+.wp-block-newsuk-banner-left--editor {
+	padding-top: 40px;
+	min-height: 300px;
+	background-color: #000;
+
+	.newsuk {
+		&__bla-wrapper {
+			max-width: 1180px;
+			margin: 0 auto;
+		}
+
+		&__bla-title {
+			color: #fff;
+			font-family: tmb;
+			font-size: 45px;
+			font-weight: 500;
+			line-height: 45px;
+			margin-bottom: 10px;
+			max-width: 760px;
+		}
+
+		&__bla-subtitle {
+			color: #fff;
+			font-family: tmr;
+			font-size: 25px;
+			line-height: 30px;
+			max-width: 760px;
+		}
+	}
+}
+
+/**
+ * back end
+ */
+.wp-block-newsuk-banner-left--editor {
+}
+
+/**
+ * front end
+ */
+.wp-block-newsuk-banner-left {
+}

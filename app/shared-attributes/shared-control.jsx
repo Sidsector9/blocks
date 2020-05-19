@@ -24,9 +24,10 @@ const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithAShar
 		const isCoreBlock = props.name.includes( 'core/' ) ? props.name : false;
 
 		const STYLE_CORE_BL = {
-			maxWidth: `${ maxWidth }px`,
 			marginLeft: 'auto',
 			marginRight: 'auto',
+			width: '100%',
+			maxWidth: `${ maxWidth }px`,
 			marginBottom: 0 === marginBottom ? undefined : `${ marginBottom }px`,
 		};
 
@@ -107,7 +108,7 @@ function addWrapperToSelectedCoreBlocksOnSave( element, blockType, attributes ) 
 	};
 
 	return (
-        <div className={ `sidlol wp-block-${ blockType.name.split( '/' ).join( '-' ) }` } style={ STYLE_CORE_BL }>
+        <div className={ `wp-block-${ blockType.name.split( '/' ).join( '-' ) }` } style={ STYLE_CORE_BL }>
 			{ element }
         </div>
     );
