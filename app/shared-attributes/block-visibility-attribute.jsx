@@ -14,7 +14,11 @@ const addSharedAttributes = ( settings, name ) => {
 		maxWidth: {
             type: 'string',
             default: '1180',
-        },
+		},
+		marginBottom: {
+			type: 'boolean',
+			default: false,
+		}
 	} );
 
     return settings;

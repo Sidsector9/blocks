@@ -10,7 +10,7 @@ registerBlockType( 'newsuk/accordion-item', {
 	icon: 'universal-access-alt',
 	category: 'newsuk',
 	supports: {
-		align: false,
+		align: ['full'],
 	},
 	attributes: {
 		titleText: {
@@ -21,7 +21,7 @@ registerBlockType( 'newsuk/accordion-item', {
 		},
 		align: {
 			type: 'string',
-			default: 'wide',
+			default: 'full',
 		},
 		alignment: {
             type: 'string',
@@ -47,13 +47,15 @@ registerBlockType( 'newsuk/accordion-item', {
 		}
 
 		render() {
-			const { attributes: { titleText, alignment }, setAttributes, isSelected } = this.props;
+			const { attributes: { titleText, alignment, maxWidth, marginBottom }, setAttributes, isSelected } = this.props;
 			const { showDescription } = this.state;
 
 			const STYLE_ACC_ITEM = {
 				width: '100%',
 				margin: '0 auto',
 				textAlign: alignment,
+				maxWidth: `${ maxWidth }px`,
+				marginBottom: marginBottom ? '40px' : undefined,
 			};
 
 			return (
@@ -83,12 +85,14 @@ registerBlockType( 'newsuk/accordion-item', {
 		}
 	},
 	save( props ) {
-		const { attributes: { titleText, alignment } } = props;
+		const { attributes: { titleText, alignment, maxWidth, marginBottom } } = props;
 
 		const STYLE_ACC_ITEM = {
 			width: '100%',
 			margin: '0 auto',
 			textAlign: alignment,
+			maxWidth: `${ maxWidth }px`,
+			marginBottom: marginBottom ? '40px' : undefined,
 		};
 
 		return (

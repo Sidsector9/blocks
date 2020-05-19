@@ -2,7 +2,7 @@ import { blocksWithSharedAttributes } from './blocks-wth-shared-attributes.jsx';
 
 const { createHigherOrderComponent } = wp.compose;
 const { InspectorControls } = wp.blockEditor;
-const { PanelBody, RadioControl } = wp.components;
+const { PanelBody, RadioControl, ToggleControl } = wp.components;
 const { addFilter } = wp.hooks;
 
 const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithASharedAttribute ) => {
@@ -12,7 +12,14 @@ const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithAShar
 			return <BlockWithASharedAttribute { ...props } />;
 		}
 
-		const { attributes: { blockVisibility, maxWidth }, setAttributes } = props;
+		const {
+			attributes: {
+				blockVisibility,
+				maxWidth,
+				marginBottom,
+			},
+			setAttributes
+		} = props;
 		const isCoreBlock = props.name.includes( 'core/' ) ? props.name : false;
 		const STYLE_CORE_BL = {
 			maxWidth: `${ maxWidth }px`,
@@ -46,6 +53,12 @@ const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithAShar
 								{ label: 'Medium ( 780px )', value: '780' },
 							] }
 							onChange={ ( maxWidth ) => { setAttributes( { maxWidth } ) } }
+						/>
+
+						<p>Margin bottom</p>
+						<ToggleControl
+							checked={ marginBottom }
+							onChange={ ( marginBottom ) => { setAttributes( { marginBottom } ) } }
 						/>
 					</PanelBody>
 				</InspectorControls>

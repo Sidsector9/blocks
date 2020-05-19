@@ -3,5 +3,8 @@ export const blocksWithSharedAttributes = [
 	'newsuk/banner',
 	'newsuk/pack-default',
 	'newsuk/accordion-container',
+	'newsuk/accordion-item',
+	'newsuk/subscription-card',
+	'newsuk/row',
 	'core/columns'
 ];
