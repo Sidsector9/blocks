@@ -55,7 +55,7 @@ registerBlockType( 'newsuk/accordion-item', {
 				margin: '0 auto',
 				textAlign: alignment,
 				maxWidth: `${ maxWidth }px`,
-				marginBottom: marginBottom ? '40px' : undefined,
+				marginBottom: 0 === marginBottom ? undefined : `${ marginBottom }px`,
 			};
 
 			return (
@@ -92,7 +92,7 @@ registerBlockType( 'newsuk/accordion-item', {
 			margin: '0 auto',
 			textAlign: alignment,
 			maxWidth: `${ maxWidth }px`,
-			marginBottom: marginBottom ? '40px' : undefined,
+			marginBottom: 0 === marginBottom ? undefined : `${ marginBottom }px`,
 		};
 
 		return (

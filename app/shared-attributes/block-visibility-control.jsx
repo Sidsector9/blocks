@@ -2,7 +2,7 @@ import { blocksWithSharedAttributes } from './blocks-wth-shared-attributes.jsx';
 
 const { createHigherOrderComponent } = wp.compose;
 const { InspectorControls } = wp.blockEditor;
-const { PanelBody, RadioControl, ToggleControl } = wp.components;
+const { PanelBody, RadioControl, ToggleControl, RangeControl } = wp.components;
 const { addFilter } = wp.hooks;
 
 const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithASharedAttribute ) => {
@@ -26,6 +26,7 @@ const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithAShar
 			marginLeft: 'auto',
 			marginRight: 'auto',
 		};
+		const maxWidthExcludedBlocks = [ 'newsuk/row' ];
 
 		return (
 			<>
@@ -44,21 +45,30 @@ const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithAShar
 							onChange={ ( blockVisibility ) => { setAttributes( { blockVisibility } ) } }
 						/>
 
-						<p>Max width</p>
-						<RadioControl
-							className="newsuk__banner-block-visibility"
-							selected={ maxWidth }
-							options={ [
-								{ label: 'Wide ( 1180px )', value: '1180' },
-								{ label: 'Medium ( 780px )', value: '780' },
-							] }
-							onChange={ ( maxWidth ) => { setAttributes( { maxWidth } ) } }
-						/>
+						{ ! maxWidthExcludedBlocks.includes( props.name ) && (
+							<>
+								<p>Max width</p>
+								<RadioControl
+									className="newsuk__banner-block-visibility"
+									selected={ maxWidth }
+									options={ [
+										{ label: 'Wide ( 1180px )', value: '1180' },
+										{ label: 'Medium ( 780px )', value: '780' },
+									] }
+									onChange={ ( maxWidth ) => { setAttributes( { maxWidth } ) } }
+								/>
+							</>
+						) }
 
 						<p>Margin bottom</p>
-						<ToggleControl
-							checked={ marginBottom }
-							onChange={ ( marginBottom ) => { setAttributes( { marginBottom } ) } }
+						<RangeControl
+							step={ 16 }
+							min={ 0 }
+							max={ 96 }
+							value={ marginBottom }
+							onChange={ ( marginBottom ) => {
+								setAttributes( { marginBottom } )
+							} }
 						/>
 					</PanelBody>
 				</InspectorControls>
@@ -85,7 +95,6 @@ function addWrapperToSelectedCoreBlocksOnSave( element, blockType, attributes ) 
 		maxWidth: `${ maxWidth }px`,
 		marginLeft: 'auto',
 		marginRight: 'auto',
-		marginBottom: '40px',
 	};
 
 	return (

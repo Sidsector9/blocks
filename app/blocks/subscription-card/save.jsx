@@ -16,7 +16,7 @@ export const save = ( props ) => {
 		maxWidth: `${ maxWidth }px`,
 		marginLeft: 'auto',
 		marginRight: 'auto',
-		marginBottom: marginBottom ? '40px' : undefined,
+		marginBottom: 0 === marginBottom ? undefined : `${ marginBottom }px`,
 	}
 
 	return (

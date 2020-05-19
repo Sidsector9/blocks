@@ -16,8 +16,8 @@ const addSharedAttributes = ( settings, name ) => {
             default: '1180',
 		},
 		marginBottom: {
-			type: 'boolean',
-			default: false,
+			type: 'number',
+			default: 0,
 		}
 	} );
 

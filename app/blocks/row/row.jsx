@@ -26,11 +26,11 @@ registerBlockType( 'newsuk/row', {
 		}
 	},
 	edit( props ) {
-		const { className, attributes: { color, marginBottom }, setAttributes, isSelected } = props;
+		const { attributes: { color, marginBottom }, setAttributes, isSelected } = props;
 
 		const STYLE_ROW = {
 			backgroundColor: `rgba( ${ Object.values( color ).join( ',' ) } )`,
-			marginBottom: marginBottom ? '40px' : undefined,
+			marginBottom: 0 === marginBottom ? undefined : `${ marginBottom }px`,
 		};
 
 		return (
@@ -59,7 +59,7 @@ registerBlockType( 'newsuk/row', {
 
 		const STYLE_ROW = {
 			backgroundColor: `rgba( ${ Object.values( color ).join( ',' ) } )`,
-			marginBottom: marginBottom ? '40px' : undefined,
+			marginBottom: 0 === marginBottom ? undefined : `${ marginBottom }px`,
 		};
 
 		return (

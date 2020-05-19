@@ -5,6 +5,7 @@ const { __ } = wp.i18n;
 import './subscription-card.scss';
 
 export const edit = ( props ) => {
+	// console.log( props.attributes )
 	const {
 		attributes: {
 			imageUrl,
@@ -20,7 +21,7 @@ export const edit = ( props ) => {
 		maxWidth: `${ maxWidth }px`,
 		marginLeft: 'auto',
 		marginRight: 'auto',
-		marginBottom: marginBottom ? '40px' : undefined,
+		marginBottom: 0 === marginBottom ? undefined : `${ marginBottom }px`,
 	}
 
 	return (
