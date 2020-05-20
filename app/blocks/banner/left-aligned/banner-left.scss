@@ -11,17 +11,34 @@
  */
 .wp-block-newsuk-banner-left,
 .wp-block-newsuk-banner-left--editor {
+	position: relative;
 	padding-top: 40px;
 	min-height: 300px;
 	background-color: #000;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50% 50%;
 
-	.newsuk {
-		&__bla-wrapper {
+	.newsuk-bla {
+		position: relative;
+
+		&__wrapper {
 			max-width: 1180px;
 			margin: 0 auto;
 		}
 
-		&__bla-title {
+		&__overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: red;
+			z-index: 0;
+		}
+
+		&__title {
+			position: relative;
 			color: #fff;
 			font-family: tmb;
 			font-size: 45px;
@@ -29,14 +46,42 @@
 			line-height: 45px;
 			margin-bottom: 10px;
 			max-width: 760px;
+			z-index: 1;
 		}
 
-		&__bla-subtitle {
+		&__subtitle {
+			position: relative;
 			color: #fff;
 			font-family: tmr;
 			font-size: 25px;
 			line-height: 30px;
 			max-width: 760px;
+			z-index: 1;
+		}
+
+		&__image-wrapper {
+			position: absolute;
+			top: 40px;
+			right: 40px;
+			backdrop-filter: blur(15px);
+			background-color: #ffe0004f;
+			border-radius: 4px;
+			cursor: pointer;
+			z-index: 1;
+		}
+
+		&__image-controls {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		&__control-button {
+			padding: 4px 4px;
+
+			&:hover {
+				background-color: #ffff0054;
+			}
 		}
 	}
 }

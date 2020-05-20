@@ -5,30 +5,29 @@ export const save = ( props ) => {
 		attributes: {
 			title,
 			subTitle,
-			alignment,
-			maxWidth
+			marginBottom,
+			imageUrl,
+			overlay,
 		}
 	} = props;
 
-	const STYLE_TITLE = {
-		width: '100%',
-		marginLeft: 'auto',
-		marginRight: 'auto',
-		maxWidth: `${ maxWidth }px`,
-		textAlign: alignment,
+	const STYLE_BLA = {
+		marginBottom: `${ marginBottom }px`,
+		backgroundImage: `url(${ imageUrl })`,
 	};
 
 	return (
-		<div>
-			<div className="newsuk__bla-wrapper">
+		<div style={ STYLE_BLA }>
+			<div className="newsuk-bla__overlay" style={ { backgroundColor: `rgba( ${ Object.values( overlay ).join( ',' ) } )` } }></div>
+			<div className="newsuk-bla__wrapper">
 				<RichText.Content
 					tagName="div"
-					className="newsuk__bla-title"
+					className="newsuk-bla__title"
 					value={ title }
 				/>
 				<RichText.Content
 					tagName="div"
-					className="newsuk__bla-subtitle"
+					className="newsuk-bla__subtitle"
 					value={ subTitle }
 				/>
 			</div>

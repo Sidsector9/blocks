@@ -5,7 +5,6 @@ const { __ } = wp.i18n;
 import './subscription-card.scss';
 
 export const edit = ( props ) => {
-	// console.log( props.attributes )
 	const {
 		attributes: {
 			imageUrl,

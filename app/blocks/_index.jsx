@@ -12,5 +12,4 @@ import './banner/_index';
 // import './columns/columns.jsx';
 import './pack/default/pack-default.jsx';
 import './row/row.jsx';
-import './wrapper/wrapper.jsx';
 import './accordion/_accordion.jsx';

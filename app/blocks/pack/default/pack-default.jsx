@@ -22,8 +22,7 @@ registerBlockType( 'newsuk/pack-default', {
 	icon: 'universal-access-alt',
 	category: 'newsuk',
 	supports: {
-		align: true,
-		className: false,
+		align: false,
 	},
 	attributes: {
 		banner: {

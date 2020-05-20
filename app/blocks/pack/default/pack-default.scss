@@ -1,5 +1,10 @@
 @import '../../_essentials/essentials';
 
+[data-type="core/columns"][data-align=full] .wp-block-columns {
+	padding-left: 0;
+	padding-right: 0;
+}
+
 .newsuk {
 	&__pack-default {
 		position: relative;
