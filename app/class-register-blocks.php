@@ -12,61 +12,11 @@ class Register_Blocks {
 	 * Loads JS/CSS assets on the block editor.
 	 */
 	public function register_blocks() {
-		wp_register_script( 'newsuk-blocks-js', PLUGIN_DIR_URL . 'dist/js/newsuk-blocks.min.js', array( 'wp-blocks', 'wp-element' ), '1.0', true );
-		wp_register_style( 'newsuk-blocks-css', PLUGIN_DIR_URL . 'dist/css/newsuk-blocks.min.css', array(), '1.0', 'all' );
+		wp_register_script( 'newsuk-banner-block-js', PLUGIN_DIR_URL . 'dist/js/newsuk-banner-block.min.js', array( 'wp-blocks', 'wp-element' ), '1.0', true );
+		// wp_register_style( 'newsuk-banner-block-css', PLUGIN_DIR_URL . 'dist/css/newsuk-banner-block.min.css', array(), '1.0', 'all' );
 
-		register_block_type( 'newsuk/title', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/subscription-card', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/banner-left', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/columns', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/pack-default', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/accordion-container', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/accordion-item', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/row', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/wrapper', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
+		register_block_type( 'newsuk/banner', array(
+			'editor_script' => 'newsuk-banner-block-js',
 		) );
 	}
 

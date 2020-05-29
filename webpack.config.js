@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 module.exports = {
 	entry: {
-		'newsuk-blocks' : './app/blocks/_index.jsx',
+		'newsuk-banner-block' : './app/blocks/banner/banner.jsx',
 	},
 	output: {
 		path: path.resolve( __dirname, 'dist' ),
