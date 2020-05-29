@@ -1,0 +1,10 @@
+.wp-block-nuk-banner,
+.wp-block-nuk-banner--editor {
+	.nuk-banner {
+		&__text-wrapper {
+			padding: 40px 0;
+			max-width: 1180px;
+			margin: 0 auto;
+		}
+	}
+}
