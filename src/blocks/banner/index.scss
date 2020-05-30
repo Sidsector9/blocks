@@ -1,10 +1,35 @@
 .wp-block-nuk-banner,
 .wp-block-nuk-banner--editor {
+	display: flex;
+
 	.nuk-banner {
 		&__text-wrapper {
+			display: flex;
 			padding: 40px 0;
+			width: 100%;
 			max-width: 1180px;
 			margin: 0 auto;
+		}
+	}
+
+	.block-editor-inner-blocks {
+		.wp-block {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+}
+
+.nuk-banner {
+	&__text-position {
+		& > .components-base-control__field {
+			display: flex;
+			flex-flow: row wrap;
+			
+			.components-radio-control__option {
+				width: 33%;
+				text-align: center;
+			}
 		}
 	}
 }

@@ -11,14 +11,82 @@ import {
 	PanelRow,
 	Button,
 	FocalPointPicker,
+	RadioControl,
 } from '@wordpress/components';
 
 import { __ } from '@wordpress/i18n';
 
 const TEMPLATE = [
-	[ 'nuk/int-text' ],
-	[ 'nuk/int-text' ],
+	[ 'nuk/int-text', { fontSize: 48, color: '#fff' } ],
+	[ 'nuk/int-text', { fontSize: 32, color: '#fff' } ],
 ];
+
+const computeBannerTextPosition = ( position ) => {
+	switch( position ) {
+		case '1':
+			return {
+				justifyContent: 'flex-start',
+				alignItems: 'baseline',
+				textAlign: 'left',
+			}
+
+		case '2':
+			return {
+				justifyContent: 'center',
+				alignItems: 'baseline',
+				textAlign: 'center',
+			}
+
+		case '3':
+			return {
+				justifyContent: 'flex-end',
+				alignItems: 'baseline',
+				textAlign: 'right',
+			}
+
+		case '4':
+			return {
+				justifyContent: 'flex-start',
+				alignItems: 'center',
+				textAlign: 'left',
+			}
+
+		case '5':
+			return {
+				justifyContent: 'center',
+				alignItems: 'center',
+				textAlign: 'center',
+			}
+
+		case '6':
+			return {
+				justifyContent: 'flex-end',
+				alignItems: 'center',
+				textAlign: 'right',
+			}
+
+		case '7':
+			return {
+				justifyContent: 'flex-start',
+				alignItems: 'flex-end',
+				textAlign: 'left',
+			}
+
+		case '8':
+			return {
+				justifyContent: 'center',
+				alignItems: 'flex-end',
+				textAlign: 'center',
+			}
+
+		case '9':
+			return {
+				justifyContent: 'flex-end',
+				alignItems: 'flex-end',
+				textAlign: 'right',
+			}
+	}
+}
 
 export const edit = ( props ) => {
 
@@ -29,6 +97,7 @@ export const edit = ( props ) => {
 			bgImageUrl,
 			bgType,
 			focalPoint,
+			bannerTextPosition,
 		},
 		setAttributes,
 	} = props;
@@ -93,14 +162,36 @@ export const edit = ( props ) => {
 						{ __( 'Clear', 'nuk-blocks' ) }
 					</Button>
 				</PanelBody> }
+
+				<PanelBody>
+					<p>{ __( 'Banner text position:', 'nuk-blocks' ) }</p>
+					<RadioControl
+						className="nuk-banner__text-position"
+						selected={ bannerTextPosition }
+						options={ [
+							{ label: '', value: '1' },
+							{ label: '', value: '2' },
+							{ label: '', value: '3' },
+							{ label: '', value: '4' },
+							{ label: '', value: '5' },
+							{ label: '', value: '6' },
+							{ label: '', value: '7' },
+							{ label: '', value: '8' },
+							{ label: '', value: '9' },
+						] }
+						onChange={ ( value ) => { setAttributes( { bannerTextPosition: value } ) } }
+					/>
+				</PanelBody>
 			</InspectorControls>
 
 			<div style={ STYLE_BANNER } className="wp-block-nuk-banner--editor">
-				{ isBgSelected && <div className="nuk-banner__text-wrapper">
-					<InnerBlocks
-						templateLock="insert"
-						template={ TEMPLATE }
-					/>
+				{ isBgSelected && <div className="nuk-banner__text-wrapper" style={ computeBannerTextPosition( bannerTextPosition ) }>
+					<div>
+						<InnerBlocks
+							templateLock="insert"
+							template={ TEMPLATE }
+						/>
+					</div>
 				</div> }
 				{ ! isBgSelected && ( <>
 					<MediaPlaceholder
@@ -113,15 +204,15 @@ export const edit = ( props ) => {
 						multiple = { false }
 						labels = { { title: __( 'The Image', 'nuk-blocks' ) } }
 					>
-					<ColorPalette
-						disableCustomColors={ true }
-						clearable={ false }
-						onChange={ ( backgroundColor ) => setAttributes( {
-							backgroundColor,
-							isBgSelected: true,
-							bgType: 'solid',
-						} ) }
-					/>
+						<ColorPalette
+							disableCustomColors={ true }
+							clearable={ false }
+							onChange={ ( backgroundColor ) => setAttributes( {
+								backgroundColor,
+								isBgSelected: true,
+								bgType: 'solid',
+							} ) }
+						/>
 					</MediaPlaceholder>
 				</> ) }
 			</div>

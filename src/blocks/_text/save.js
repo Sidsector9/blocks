@@ -1,13 +1,16 @@
 import { RichText } from '@wordpress/block-editor';
 
 export const save = ( props ) => {
+
 	const {
 		attributes: {
-			text
-		},
+			text,
+		}
 	} = props;
 
 	return (
-		<RichText.Content />
+		<RichText.Content
+			value={ text }
+		/>
 	);
 };

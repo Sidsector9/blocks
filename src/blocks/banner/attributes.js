@@ -25,5 +25,9 @@ export const attributes = {
 			x: 0.5,
 			y: 0.5,
 		}
+	},
+	bannerTextPosition: {
+		type: 'string',
+		default: '1',
 	}
 };
