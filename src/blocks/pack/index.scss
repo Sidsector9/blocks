@@ -1,6 +1,26 @@
+.media-modal {
+	z-index: 9999999999;
+}
+
 .wp-block-nuk-pack--editor {
 	.nuk-pack {
 		&__entitlement-row-wrapper {
+			&--yes {
+				.nuk-pack__entitlement-icon path {
+					fill: #157382;
+				}
+			}
+
+			&--no {
+				.nuk-pack__entitlement-icon path {
+					fill: #ccc;
+				}
+
+				.nuk-pack__entitlement-item {
+					color: #c2c2c2;
+				}
+			}
+
 			&:hover {
 				background-color: #efefef;
 			}
@@ -77,12 +97,14 @@
 			&:hover {
 				.nuk-pack__remove-button {
 					display: block;
-				}
-			}
 
-			svg {
-				path {
-					fill: #DC3232;
+					svg path {
+						fill: #DC3232;
+					}
+				}
+
+				.nuk-pack__entitlement-control {
+					display: block;
 				}
 			}
 		}
@@ -99,10 +121,16 @@
 			padding-right: 2.5rem;
 		}
 
-		&__icon-picker {
-			margin-right: 0.45rem;
-			margin-top: 5px;
-			cursor: pointer;
+		&__entitlement-control {
+			display: none;
+			position: relative;
+			top: 0.75rem;
+			width: 100%;
+			text-align: center;
+		}
+
+		&__entitlement-icon {
+			margin-right: 0.5rem;
 		}
 
 		&__entitlement-item {
@@ -119,7 +147,7 @@
 		}
 	}
 
-	&--default {
+	&--no {
 		.nuk-pack {
 			&__pack-title {
 				font-size: 1.75rem;

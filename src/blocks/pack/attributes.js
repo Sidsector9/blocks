@@ -20,10 +20,10 @@ export const attributes = {
 	},
 	packType: {
 		type: 'string',
-		default: 'default',
+		default: 'no',
 	},
 	entitlements: {
 		type: 'array',
 		default: [],
-	}
+	},
 };
