@@ -92,6 +92,7 @@ export const edit = ( props ) => {
 
 	const {
 		attributes: {
+			maxWidth,
 			backgroundColor,
 			isBgSelected,
 			bgImageUrl,
@@ -103,12 +104,15 @@ export const edit = ( props ) => {
 	} = props;
 
 	const STYLE_BANNER = {
+		maxWidth,
 		backgroundColor,
 		backgroundSize: 'cover',
 		backgroundRepeat: 'no-repeat',
 		backgroundImage: `url( ${ bgImageUrl } )`,
 		backgroundPosition: Object.values( focalPoint ).map( ( val ) => `${ val * 100 }%` ).join( ' ' ),
 		minHeight: isBgSelected ? '400px' : undefined,
+		marginLeft: 'auto',
+		marginRight: 'auto',
 	};
 
 	return (

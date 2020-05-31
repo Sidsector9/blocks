@@ -1,0 +1,44 @@
+.wp-block-nuk-int-accordion-item,
+.wp-block-nuk-int-accordion-item--editor {
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+	.nuk-acc-item {
+		&__heading-wrapper {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+		}
+
+		&__heading {
+			flex: 1;
+			font-size: 1.5rem;
+		}
+
+		&__arrow {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: solid 1px #E2E2E2;
+			width: 35px;
+			height: 35px;
+			border-radius: 50%;
+			transform: rotate( 0deg );
+			transition: transform 0.3s ease;
+			cursor: pointer;
+
+			&.is-open {
+				transform: rotate( 180deg );
+				transition: transform 0.3s ease;
+			}
+		}
+	}
+}
+
+.wp-block-nuk-int-accordion-item {
+	.nuk-acc-item {
+		&__heading-wrapper {
+			cursor: pointer;
+		}
+	}
+}
