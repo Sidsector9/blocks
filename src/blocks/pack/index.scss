@@ -1,6 +1,6 @@
 .wp-block-nuk-pack--editor {
 	.nuk-pack {
-		&__entitlement-row {
+		&__entitlement-row-wrapper {
 			&:hover {
 				background-color: #efefef;
 			}
@@ -69,10 +69,6 @@
 
 		&__entitlement-row {
 			position: relative;
-			padding-top: 0.875rem;
-			padding-bottom: 0.875rem;
-			margin-left: -2.5rem;
-			margin-right: -2.5rem;
 
 			&:first-child {
 				padding-top: 0;
@@ -91,16 +87,33 @@
 			}
 		}
 
-		&__entitlement-item {
+		&__entitlement-row-wrapper {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			padding-top: 0.875rem;
+			padding-bottom: 0.875rem;
+			margin-left: -2.5rem;
+			margin-right: -2.5rem;
 			padding-left: 2.5rem;
 			padding-right: 2.5rem;
+		}
+
+		&__icon-picker {
+			margin-right: 0.45rem;
+			margin-top: 5px;
+			cursor: pointer;
+		}
+
+		&__entitlement-item {
+			flex: 1;
 		}
 
 		&__remove-button {
 			display: none;
 			position: absolute;
 			top: 50%;
-			right: 10px;
+			right: -30px;
 			transform: translate( 0, -50% );
 			cursor: pointer;
 		}

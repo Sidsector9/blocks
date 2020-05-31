@@ -1,5 +1,6 @@
 import {
 	RichText,
+	MediaUpload,
 } from '@wordpress/block-editor';
 
 import { useState } from '@wordpress/element';
@@ -10,6 +11,7 @@ import {
 	TextControl,
 	PanelBody,
 	Icon,
+	ButtonGroup,
 } from '@wordpress/components';
 
 import { __ } from '@wordpress/i18n';
@@ -30,7 +32,8 @@ export const edit = ( props ) => {
 		isSelected,
 	} = props;
 
-	const [ ctaPopupStatus, setCtaPopupStatus ] = useState( false )
+	const [ ctaPopupStatus, setCtaPopupStatus ] = useState( false );
+	// const [ iconPopupStatus, setIconPopupStatus ] = useState( [] );
 
 	return (
 		<div className={ `wp-block-nuk-pack--editor wp-block-nuk-pack--editor--${ packType }` }>
@@ -77,7 +80,6 @@ export const edit = ( props ) => {
 								onChange={ ( text ) => {
 									const temp = { ...cta };
 									temp.text = text,
-
 									setAttributes( { cta: temp } );
 								} }
 							/>
@@ -86,7 +88,6 @@ export const edit = ( props ) => {
 								onChange={ ( url ) => {
 									const temp = { ...cta };
 									temp.url = url,
-
 									setAttributes( { cta: temp } );
 								} }
 							/>
@@ -102,20 +103,82 @@ export const edit = ( props ) => {
 							text,
 							icon,
 						} = entitlement;
+
+						const [ iconPopup, setIconPopup ] = useState( false );
+
 						return (
 							<div className="nuk-pack__entitlement-row">
-								<RichText
-									className="nuk-pack__entitlement-item"
-									placeholder={ __( 'Add description...', 'nuk-blocks' ) }
-									inlineToolbar
-									value={ text }
-									onChange={ ( text ) => {
-										const temp = [ ...entitlements ];
-										temp[ index ].text = text;
-
-										setAttributes( { entitlements: temp } );
-									} }
-								/>
+								<div className="nuk-pack__entitlement-row-wrapper">
+									<div className="nuk-pack__icon-picker" onClick={ ( e ) => ! e.target.closest( '.nuk-pack__button-yes, .nuk-pack__button-no' ) && setIconPopup( ! iconPopup ) }>
+											{ iconPopup && <Popover>
+												<PanelBody>
+													<p>{ __( 'Choose an icon' ) }</p>
+													<ButtonGroup>
+														<Button
+															isSecondary
+															icon="yes"
+															className="nuk-pack__button-yes"
+															{ ...( 'yes' === icon ) ? { isPrimary: true } : { isSecondary: true } }
+															onClick={ () => {
+																const temp = [ ...entitlements ];
+																temp[ index ].icon = 'yes';
+																temp[ index ].isImage = false;
+																setAttributes( { entitlements: temp } );
+															} }
+														/>
+														<Button
+															isSecondary
+															icon="no"
+															className="nuk-pack__button-no"
+															{ ...( 'no' === icon ) ? { isPrimary: true } : { isSecondary: true } }
+															onClick={ () => {
+																const temp = [ ...entitlements ];
+																temp[ index ].icon = 'no';
+																temp[ index ].isImage = false;
+																setAttributes( { entitlements: temp } );
+															} }
+														/>
+														<MediaUpload
+															// onSelect={ () => { console.log( 'Hello' ) } }
+															render={ ( { open } ) => (
+																<Button
+																	isSecondary
+																	icon="camera"
+																	onClick={ open }
+																/>
+															)
+														}/>
+													</ButtonGroup>
+													<p>
+														<Button
+															isLink
+															onClick={ () => {
+																const temp = [ ...entitlements ];
+																temp[ index ].icon = undefined;
+																temp[ index ].isImage = undefined;
+																setAttributes( { entitlements: temp } );
+															} }
+														>
+															{ __( 'Remove icon', 'nuk-blocks' ) }
+														</Button>
+													</p>
+												</PanelBody>
+											</Popover> }
+										<Icon icon="camera">
+										</Icon>
+									</div>
+									<RichText
+										className="nuk-pack__entitlement-item"
+										placeholder={ __( 'Add description...', 'nuk-blocks' ) }
+										inlineToolbar
+										value={ text }
+										onChange={ ( text ) => {
+											const temp = [ ...entitlements ];
+											temp[ index ].text = text;
+											setAttributes( { entitlements: temp } );
+										} }
+									/>
+								</div>
 								<Icon
 									icon="no"
 									className="nuk-pack__remove-button"
