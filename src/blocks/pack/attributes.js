@@ -22,6 +22,10 @@ export const attributes = {
 		type: 'string',
 		default: 'no',
 	},
+	packHighlightText: {
+		type: 'string',
+		default: ''
+	},
 	entitlements: {
 		type: 'array',
 		default: [],

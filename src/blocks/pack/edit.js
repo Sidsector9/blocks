@@ -30,6 +30,7 @@ export const edit = ( props ) => {
 			cta,
 			packType,
 			entitlements,
+			packHighlightText,
 		},
 		setAttributes,
 		isSelected,
@@ -50,9 +51,16 @@ export const edit = ( props ) => {
 						] }
 						onChange={ ( packType ) => setAttributes( { packType } ) }
 					/>
+
+					<p>{ __( 'Highlight Text:', 'nuk-blocks' ) }</p>
+					{ 'yes' === packType && <TextControl
+						value={ packHighlightText }
+						onChange={ ( packHighlightText ) => setAttributes( { packHighlightText } ) }
+					/> }
 				</PanelBody>
 			</InspectorControls>
 			<div className={ `wp-block-nuk-pack--editor wp-block-nuk-pack--editor--${ packType }` }>
+				{ packHighlightText && <div className="nuk-pack__highlight-text">{ packHighlightText }</div> }
 				<div className="nuk-pack__intro">
 					<RichText
 						className="nuk-pack__pack-title"

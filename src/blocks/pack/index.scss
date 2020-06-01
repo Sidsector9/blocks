@@ -5,6 +5,22 @@
 .wp-block-nuk-pack--editor {
 	.nuk-pack {
 		&__entitlement-row-wrapper {
+			&:hover {
+				background-color: #efefef;
+			}
+		}
+	}
+}
+
+.wp-block-nuk-pack,
+.wp-block-nuk-pack--editor {
+	position: relative;
+	padding: 2.5rem;
+	box-shadow: 0 0 2px rgba( 40, 41, 61, 0.04 ), 0 4px 8px rgba( 96, 97, 112, 0.16 );
+
+	.nuk-pack {
+
+		&__entitlement-row-wrapper {
 			&--yes {
 				.nuk-pack__entitlement-icon path {
 					fill: #157382;
@@ -20,22 +36,21 @@
 					color: #c2c2c2;
 				}
 			}
-
-			&:hover {
-				background-color: #efefef;
-			}
 		}
-	}
-}
 
-.wp-block-nuk-pack,
-.wp-block-nuk-pack--editor {
-	padding: 2.5rem;
-	box-shadow: 0 0 2px rgba( 40, 41, 61, 0.04 ), 0 4px 8px rgba( 96, 97, 112, 0.16 );
+		&__highlight-text {
+			position: absolute;
+			top: -28px;
+			left: -2px;
+			height: 28px;
+			width: calc( 100% + 4px );
+			color: #000;
+			background-color: #ffa300;
+			text-align: center;
+			text-transform: uppercase;
+		}
 
-	.nuk-pack {
 		&__pack-title {
-			font-size: 5rem;
 			color: #23231f;
 		}
 
@@ -162,6 +177,27 @@
 
 			&__cta {
 				background-color: #006699;
+			}
+		}
+	}
+
+	&--yes {
+		border: 2px solid #ffa300;
+
+		.nuk-pack {
+			&__pack-title {
+				font-size: 2.25rem;
+				line-height: 1.75rem;
+			}
+
+			&__price {
+				font-size: 2.25rem;
+				line-height: 1.75rem;
+			}
+
+			&__cta {
+				background-color: #ffa300;
+				color: #0a0a0a !important;
 			}
 		}
 	}

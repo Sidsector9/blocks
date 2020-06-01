@@ -16,11 +16,13 @@ export const save = ( props ) => {
 			cta,
 			packType,
 			entitlements,
+			packHighlightText,
 		},
 	} = props;
 
 	return (
-		<div className={ `wp-block-nuk-pack--editor--${ packType }` }>
+		<div className={ `wp-block-nuk-pack--${ packType }` }>
+			{ packHighlightText && <div className="nuk-pack__highlight-text">{ packHighlightText }</div> }
 			<div className="nuk-pack__intro">
 				<RichText.Content
 					tagName="div"
