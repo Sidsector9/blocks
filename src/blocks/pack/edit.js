@@ -60,7 +60,7 @@ export const edit = ( props ) => {
 						inlineToolbar
 						value={ title }
 						onChange={ ( title ) => setAttributes( { title } ) }
-						/>
+					/>
 					<RichText
 						className="nuk-pack__pack-description"
 						placeholder={ __( 'Description...', 'nuk-blocks' ) }
@@ -144,7 +144,6 @@ export const edit = ( props ) => {
 										/>
 									<div className="nuk-pack__entitlement-control">
 										<ButtonGroup>
-
 											<Tooltip text={ __( 'Available', 'nuk-blocks' ) } position="bottom center">
 												<Button
 													isSmall
