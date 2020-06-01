@@ -1,3 +1,5 @@
+import './assets/scss/global.scss';
+
 import './shared-attributes/index';
 
 

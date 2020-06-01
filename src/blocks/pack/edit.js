@@ -60,7 +60,7 @@ export const edit = ( props ) => {
 				</PanelBody>
 			</InspectorControls>
 			<div className={ `wp-block-nuk-pack--editor wp-block-nuk-pack--editor--${ packType }` }>
-				{ packHighlightText && <div className="nuk-pack__highlight-text">{ packHighlightText }</div> }
+				{ 'yes' === packType && packHighlightText && <div className="nuk-pack__highlight-text">{ packHighlightText }</div> }
 				<div className="nuk-pack__intro">
 					<RichText
 						className="nuk-pack__pack-title"

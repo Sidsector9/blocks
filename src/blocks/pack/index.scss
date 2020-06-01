@@ -17,9 +17,9 @@
 	position: relative;
 	padding: 2.5rem;
 	box-shadow: 0 0 2px rgba( 40, 41, 61, 0.04 ), 0 4px 8px rgba( 96, 97, 112, 0.16 );
+	border: 2px solid rgba( 0, 0, 0, 0 );
 
 	.nuk-pack {
-
 		&__entitlement-row-wrapper {
 			&--yes {
 				.nuk-pack__entitlement-icon path {
@@ -40,34 +40,43 @@
 
 		&__highlight-text {
 			position: absolute;
-			top: -28px;
+			top: -32px;
 			left: -2px;
-			height: 28px;
+			height: 32px;
 			width: calc( 100% + 4px );
 			color: #000;
 			background-color: #ffa300;
 			text-align: center;
 			text-transform: uppercase;
+			font-size: 0.75rem;
+			font-family: gsm;
+			letter-spacing: 1px;
+			line-height: 32px;
 		}
 
 		&__pack-title {
 			color: #23231f;
+			font-family: tmb;
 		}
 
 		&__pack-description {
 			line-height: 1.25rem;
 			color: #696969;
 			margin-top: 0.75rem;
+			font-family: tmr;
 		}
 
 		&__price {
 			margin-top: 2rem;
 			color: #1d1d1b;
+			font-family: tmb;
 		}
 
 		&__frequency {
+			font-family: gsm;
 			font-size: 0.875rem;
 			line-height: 1.125rem;
+			color: #747474;
 		}
 
 		&__cta {
@@ -75,10 +84,12 @@
 			margin-top: 1.125rem;
 			padding: 15px;
 			font-size: 0.75rem;
+			font-family: gsm;
 			text-transform: uppercase;
 			text-decoration: none;
 			color: #fff !important;
 			text-align: center;
+			letter-spacing: 1px;
 		}
 
 		&__add-button {
@@ -98,6 +109,7 @@
 			padding-top: 1.375rem;
 			margin-bottom: 1.375rem;
 			text-transform: uppercase;
+			font-family: gsm;
 			font-size: 0.75rem;
 			line-height: 0.75rem;
 			letter-spacing: 0.74px;
@@ -135,6 +147,7 @@
 			margin-right: -2.5rem;
 			padding-left: 2.5rem;
 			padding-right: 2.5rem;
+			font-family: tmr;
 		}
 
 		&__entitlement-control {
@@ -198,6 +211,14 @@
 			&__cta {
 				background-color: #ffa300;
 				color: #0a0a0a !important;
+			}
+
+			&__entitlement-row-wrapper {
+				&--yes {
+					.nuk-pack__entitlement-icon path {
+						fill: #ffa300;
+					}
+				}
 			}
 		}
 	}
