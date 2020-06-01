@@ -4,16 +4,20 @@ import './shared-attributes/index';
 
 
 import './blocks/_text/index.jsx';
-import './blocks/_accordion-item/index.jsx';
 import './blocks/text/index.jsx';
 import './blocks/banner/index.jsx';
-import './blocks/accordion/index.jsx';
 import './blocks/_pack/index.jsx';
 import './blocks/row/index.jsx';
-
 import './essentials/overrides.scss';
 
 /**
- * Block elements
+ * NewsUk Blocks.
  */
-import './blocks/_block_title/index.jsx';
+import './blocks/accordion/index.jsx';
+import './blocks/pack/index.jsx';
+
+/**
+ * Internal Block.
+ */
+import './blocks/_block-title/index.jsx';
+import './blocks/_accordion-item/index.jsx';

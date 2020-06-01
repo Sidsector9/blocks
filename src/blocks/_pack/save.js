@@ -21,35 +21,35 @@ export const save = ( props ) => {
 	} = props;
 
 	return (
-		<div className={ `wp-block-nuk-pack--${ packType }` }>
-			{ 'yes' === packType && packHighlightText && <div className="nuk-pack__highlight-text">{ packHighlightText }</div> }
-			<div className="nuk-pack__intro">
+		<div className={ `wp-block-nuk-int-pack--${ packType }` }>
+			{ 'yes' === packType && packHighlightText && <div className="nuk-int-pack__highlight-text">{ packHighlightText }</div> }
+			<div className="nuk-int-pack__intro">
 				<RichText.Content
 					tagName="div"
-					className="nuk-pack__pack-title"
+					className="nuk-int-pack__pack-title"
 					value={ title }
 				/>
 				<RichText.Content
 					tagName="div"
-					className="nuk-pack__pack-description"
+					className="nuk-int-pack__pack-description"
 					value={ description }
 				/>
 			</div>
-			<div className="nuk-pack__pricing">
+			<div className="nuk-int-pack__pricing">
 				<RichText.Content
 					tagName="div"
-					className="nuk-pack__price"
+					className="nuk-int-pack__price"
 					value={ price }
 				/>
 				<RichText.Content
 					tagName="div"
-					className="nuk-pack__frequency"
+					className="nuk-int-pack__frequency"
 					value={ frequency }
 				/>
-				<a href={ cta.url } className="nuk-pack__cta">{ cta.text }</a>
+				<a href={ cta.url } className="nuk-int-pack__cta">{ cta.text }</a>
 			</div>
-			<div className="nuk-pack__entitlements">
-				<div className="nuk-pack__entitlements-title">{ __( "What's included", 'nuk-blocks' ) }</div>
+			<div className="nuk-int-pack__entitlements">
+				<div className="nuk-int-pack__entitlements-title">{ __( "What's included", 'nuk-blocks' ) }</div>
 				{
 					entitlements.map( ( entitlement, index ) => {
 						const {
@@ -59,13 +59,13 @@ export const save = ( props ) => {
 						} = entitlement;
 
 						return (
-							<div className="nuk-pack__entitlement-row">
-								<div className={ `nuk-pack__entitlement-row-wrapper nuk-pack__entitlement-row-wrapper--${ icon }` }>
-									{ 'yes' === icon && <Icon className="nuk-pack__entitlement-icon" icon="yes" size={ 32 } /> }
-									{ 'no' === icon && <Icon className="nuk-pack__entitlement-icon" icon="no-alt" size={ 32 } /> }
+							<div className="nuk-int-pack__entitlement-row">
+								<div className={ `nuk-int-pack__entitlement-row-wrapper nuk-int-pack__entitlement-row-wrapper--${ icon }` }>
+									{ 'yes' === icon && <Icon className="nuk-int-pack__entitlement-icon" icon="yes" size={ 32 } /> }
+									{ 'no' === icon && <Icon className="nuk-int-pack__entitlement-icon" icon="no-alt" size={ 32 } /> }
 									<RichText.Content
 										tagName="div"
-										className="nuk-pack__entitlement-item"
+										className="nuk-int-pack__entitlement-item"
 										value={ text }
 									/>
 								</div>

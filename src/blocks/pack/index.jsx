@@ -6,11 +6,16 @@ import { edit } from './edit';
 import { save } from './save';
 import './index.scss';
 
+const supports = {
+	align: [ 'wide', 'full' ]
+};
+
 registerBlockType(
-	'nuk/int-pack',
+	'nuk/pack',
 	{
 		title: __( 'Pack', 'nuk-blocks' ),
 		category: 'nuk',
+		supports,
 		attributes,
 		edit,
 		save,

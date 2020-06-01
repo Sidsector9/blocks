@@ -46,8 +46,9 @@ export const edit = ( props ) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<div style={ STYLE_TEXT } className="wp-block-nuk-text--editor">
+			<div style={ STYLE_TEXT } className="wp-block-nuk-int-block-title--editor">
 				<RichText
+					placeholder={ __( 'Add a title', 'nuk-blocks' ) }
 					value={ text }
 					onChange={ ( text ) => setAttributes( { text } ) }
 				/>

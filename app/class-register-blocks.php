@@ -39,12 +39,11 @@ class Register_Blocks {
 			'style' => 'nuk-blocks-css',
 		) );
 
-		register_block_type( 'nuk/pack', array(
-			'editor_script' => 'nuk-blocks-js',
-			'editor_style' => 'nuk-blocks-css',
-			'style' => 'nuk-blocks-css',
-		) );
-
+		/**
+		 * Accordion block.
+		 *
+		 * @since 0.1.0
+		 */
 		register_block_type( 'nuk/row', array(
 			'editor_script' => 'nuk-blocks-js',
 			'editor_style' => 'nuk-blocks-css',
@@ -52,11 +51,11 @@ class Register_Blocks {
 		) );
 
 		/**
-		 * Accordion block.
+		 * Pack block.
 		 *
 		 * @since 0.1.0
 		 */
-		register_block_type( 'nuk/row', array(
+		register_block_type( 'nuk/pack', array(
 			'editor_script' => 'nuk-blocks-js',
 			'editor_style' => 'nuk-blocks-css',
 			'style' => 'nuk-blocks-css',

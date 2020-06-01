@@ -13,7 +13,7 @@ const addSharedAttributes = ( settings, name ) => {
 		},
 		maxWidth: {
 			type: 'string',
-            default: '100%',
+            default: '1180px',
 		},
 		paddingTop: {
 			type: 'number',

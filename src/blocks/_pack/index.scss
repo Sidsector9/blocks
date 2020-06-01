@@ -2,8 +2,8 @@
 	z-index: 9999999999;
 }
 
-.wp-block-nuk-pack--editor {
-	.nuk-pack {
+.wp-block-nuk-int-pack--editor {
+	.nuk-int-pack {
 		&__entitlement-row-wrapper {
 			&:hover {
 				background-color: #efefef;
@@ -12,28 +12,28 @@
 	}
 }
 
-.wp-block-nuk-pack,
-.wp-block-nuk-pack--editor {
+.wp-block-nuk-int-pack,
+.wp-block-nuk-int-pack--editor {
 	position: relative;
 	padding: 0 2.5rem 2.5rem 2.5rem;
 	box-shadow: 0 0 2px rgba( 40, 41, 61, 0.04 ), 0 4px 8px rgba( 96, 97, 112, 0.16 );
 	border: 2px solid rgba( 0, 0, 0, 0 );
 	background-color: #fff;
 
-	.nuk-pack {
+	.nuk-int-pack {
 		&__entitlement-row-wrapper {
 			&--yes {
-				.nuk-pack__entitlement-icon path {
+				.nuk-int-pack__entitlement-icon path {
 					fill: #157382;
 				}
 			}
 
 			&--no {
-				.nuk-pack__entitlement-icon path {
+				.nuk-int-pack__entitlement-icon path {
 					fill: #ccc;
 				}
 
-				.nuk-pack__entitlement-item {
+				.nuk-int-pack__entitlement-item {
 					color: #c2c2c2;
 				}
 			}
@@ -123,7 +123,7 @@
 			}
 			
 			&:hover {
-				.nuk-pack__remove-button {
+				.nuk-int-pack__remove-button {
 					display: block;
 
 					svg path {
@@ -131,7 +131,7 @@
 					}
 				}
 
-				.nuk-pack__entitlement-control {
+				.nuk-int-pack__entitlement-control {
 					display: block;
 				}
 			}
@@ -177,7 +177,7 @@
 	}
 
 	&--no {
-		.nuk-pack {
+		.nuk-int-pack {
 			&__pack-title {
 				font-size: 1.75rem;
 				line-height: 1.75rem;
@@ -197,7 +197,7 @@
 	&--yes {
 		border: 2px solid #ffa300;
 
-		.nuk-pack {
+		.nuk-int-pack {
 			&__pack-title {
 				font-size: 2.25rem;
 				line-height: 1.75rem;
@@ -215,7 +215,7 @@
 
 			&__entitlement-row-wrapper {
 				&--yes {
-					.nuk-pack__entitlement-icon path {
+					.nuk-int-pack__entitlement-icon path {
 						fill: #ffa300;
 					}
 				}

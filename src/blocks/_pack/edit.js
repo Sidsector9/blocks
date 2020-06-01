@@ -59,40 +59,40 @@ export const edit = ( props ) => {
 					/> }
 				</PanelBody>
 			</InspectorControls>
-			<div className={ `wp-block-nuk-pack--editor wp-block-nuk-pack--editor--${ packType }` }>
-				{ 'yes' === packType && packHighlightText && <div className="nuk-pack__highlight-text">{ packHighlightText }</div> }
-				<div className="nuk-pack__intro">
+			<div className={ `wp-block-nuk-int-pack--editor wp-block-nuk-int-pack--editor--${ packType }` }>
+				{ 'yes' === packType && packHighlightText && <div className="nuk-int-pack__highlight-text">{ packHighlightText }</div> }
+				<div className="nuk-int-pack__intro">
 					<RichText
-						className="nuk-pack__pack-title"
+						className="nuk-int-pack__pack-title"
 						placeholder={ __( 'Title...', 'nuk-blocks' ) }
 						inlineToolbar
 						value={ title }
 						onChange={ ( title ) => setAttributes( { title } ) }
 					/>
 					<RichText
-						className="nuk-pack__pack-description"
+						className="nuk-int-pack__pack-description"
 						placeholder={ __( 'Description...', 'nuk-blocks' ) }
 						inlineToolbar
 						value={ description }
 						onChange={ ( description ) => setAttributes( { description } ) }
 					/>
 				</div>
-				<div className="nuk-pack__pricing">
+				<div className="nuk-int-pack__pricing">
 					<RichText
-						className="nuk-pack__price"
+						className="nuk-int-pack__price"
 						placeholder={ __( '£15.00.', 'nuk-blocks' ) }
 						allowedFormats={ [] }
 						value={ price }
 						onChange={ ( price ) => setAttributes( { price } ) }
 					/>
 					<RichText
-						className="nuk-pack__frequency"
+						className="nuk-int-pack__frequency"
 						placeholder={ __( 'a month, monthly rolling contract', 'nuk-blocks' ) }
 						allowedFormats={ [] }
 						value={ frequency }
 						onChange={ ( frequency ) => setAttributes( { frequency } ) }
 					/>
-					<a href={ cta.url } className="nuk-pack__cta" onClick={ ( e ) => {
+					<a href={ cta.url } className="nuk-int-pack__cta" onClick={ ( e ) => {
 						e.preventDefault();
 						! e.target.closest( '.components-popover__content' ) && setCtaPopupStatus( ! ctaPopupStatus );
 					} }>
@@ -119,8 +119,8 @@ export const edit = ( props ) => {
 						</Popover> }
 					</a>
 				</div>
-				<div className="nuk-pack__entitlements">
-					<div className="nuk-pack__entitlements-title">{ __( "What's included", 'nuk-blocks' ) }</div>
+				<div className="nuk-int-pack__entitlements">
+					<div className="nuk-int-pack__entitlements-title">{ __( "What's included", 'nuk-blocks' ) }</div>
 					{
 						entitlements.map( ( entitlement, index ) => {
 							const {
@@ -130,17 +130,17 @@ export const edit = ( props ) => {
 							} = entitlement;
 
 							return (
-								<div className="nuk-pack__entitlement-row">
-									<div className={ `nuk-pack__entitlement-row-wrapper nuk-pack__entitlement-row-wrapper--${ icon }` }>
+								<div className="nuk-int-pack__entitlement-row">
+									<div className={ `nuk-int-pack__entitlement-row-wrapper nuk-int-pack__entitlement-row-wrapper--${ icon }` }>
 										{ ! icon && <Icon
-											className="nuk-pack__entitlement-icon"
+											className="nuk-int-pack__entitlement-icon"
 											icon="instagram"
 											size={ 32 }
 										/> }
-										{ 'yes' === icon && <Icon className="nuk-pack__entitlement-icon" icon="yes" size={ 32 } /> }
-										{ 'no' === icon && <Icon className="nuk-pack__entitlement-icon" icon="no-alt" size={ 32 } /> }
+										{ 'yes' === icon && <Icon className="nuk-int-pack__entitlement-icon" icon="yes" size={ 32 } /> }
+										{ 'no' === icon && <Icon className="nuk-int-pack__entitlement-icon" icon="no-alt" size={ 32 } /> }
 										<RichText
-											className="nuk-pack__entitlement-item"
+											className="nuk-int-pack__entitlement-item"
 											placeholder={ __( 'Add description...', 'nuk-blocks' ) }
 											inlineToolbar
 											value={ text }
@@ -150,13 +150,13 @@ export const edit = ( props ) => {
 												setAttributes( { entitlements: temp } );
 											} }
 										/>
-									<div className="nuk-pack__entitlement-control">
+									<div className="nuk-int-pack__entitlement-control">
 										<ButtonGroup>
 											<Tooltip text={ __( 'Available', 'nuk-blocks' ) } position="bottom center">
 												<Button
 													isSmall
 													icon="yes"
-													className="nuk-pack__button-yes"
+													className="nuk-int-pack__button-yes"
 													{ ...( 'yes' === icon ? { isPrimary: true } : {} ) }
 													onClick={ () => {
 														const temp = [ ...entitlements ];
@@ -171,7 +171,7 @@ export const edit = ( props ) => {
 												<Button
 													isSmall
 													icon="no"
-													className="nuk-pack__button-no"
+													className="nuk-int-pack__button-no"
 													{ ...( 'no' === icon ? { isPrimary: true } : {} ) }
 													onClick={ () => {
 														const temp = [ ...entitlements ];
@@ -210,7 +210,7 @@ export const edit = ( props ) => {
 									</div>
 									</div>
 									<Tooltip text={ __( 'Delete entitlement', 'nuk-blocks' ) } position="bottom center">
-										<div className="nuk-pack__remove-button">
+										<div className="nuk-int-pack__remove-button">
 											<Icon
 												icon="no"
 												size={ 32 }
@@ -226,7 +226,7 @@ export const edit = ( props ) => {
 				{ isSelected && (
 					<Button
 						isSecondary
-						className="nuk-pack__add-button"
+						className="nuk-int-pack__add-button"
 						icon="plus"
 						onClick={ () => {
 							setAttributes( {
