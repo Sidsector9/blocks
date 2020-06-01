@@ -7,6 +7,7 @@ import { auto } from 'async';
 
 const ALLOWED_BLOCKS = [ 'nuk/int-accordion-item' ];
 const TEMPLATE = [
+	[ 'nuk/int-block-title' ],
 	[ 'nuk/int-accordion-item' ]
 ];
 
@@ -14,9 +15,18 @@ export const edit = ( props ) => {
 
 	const {
 		attributes: {
-			maxWidth
+			maxWidth,
+			paddingTop,
+			paddingBottom,
+			backgroundColor,
 		}
 	} = props;
+
+	const STY_ACC_WR = {
+		paddingTop,
+		paddingBottom,
+		backgroundColor,
+	}
 
 	const STYLE_ACC = {
 		maxWidth,
@@ -25,14 +35,16 @@ export const edit = ( props ) => {
 	};
 
 	return (
-		<div style={ STYLE_ACC } className="wp-block-nuk-accordion--editor">
-			<InnerBlocks
-				allowedBlocks={ ALLOWED_BLOCKS }
-				template={ TEMPLATE }
-				renderAppender={ () => (
-					<InnerBlocks.ButtonBlockAppender />
-				) }
-			/>
+		<div style={ STY_ACC_WR } className="wp-block-nuk-accordion--editor">
+			<div style={ STYLE_ACC }>
+				<InnerBlocks
+					allowedBlocks={ ALLOWED_BLOCKS }
+					template={ TEMPLATE }
+					renderAppender={ () => (
+						<InnerBlocks.ButtonBlockAppender />
+					) }
+				/>
+			</div>
 		</div>
 	);
 };

@@ -1,4 +1,8 @@
 export const attributes = {
+	align: {
+		type: 'string',
+		default: 'full',
+	},
 	imageUrl: {
 		type: '',
 		default: '',

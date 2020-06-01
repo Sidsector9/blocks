@@ -1,10 +1,10 @@
 import { blocksWithSharedAttributes } from './blocks-wth-shared-attributes';
-import { create } from 'domain';
 
 const { createHigherOrderComponent } = wp.compose;
-const { InspectorControls } = wp.blockEditor;
+const { InspectorControls, ColorPalette } = wp.blockEditor;
 const { PanelBody, RadioControl, ToggleControl, RangeControl } = wp.components;
 const { addFilter } = wp.hooks;
+import { __ } from '@wordpress/i18n';
 
 const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithASharedAttribute ) => {
 	return ( props ) => {
@@ -17,6 +17,9 @@ const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithAShar
 			attributes: {
 				blockVisibility,
 				maxWidth,
+				paddingTop,
+				paddingBottom,
+				backgroundColor,
 			},
 			setAttributes
 		} = props;
@@ -38,15 +41,42 @@ const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithAShar
 							onChange={ ( blockVisibility ) => { setAttributes( { blockVisibility } ) } }
 						/>
 
-						<p>Max width</p>
+						<p>Content width</p>
 						<RadioControl
 							className="newsuk__banner-block-visibility"
 							selected={ maxWidth }
 							options={ [
-								{ label: 'Fit container (100%)', value: '100%' },
+								{ label: 'Fit container (1180px)', value: '1180px' },
 								{ label: 'Medium (780px)', value: '780px' },
 							] }
 							onChange={ ( maxWidth ) => { setAttributes( { maxWidth } ) } }
+						/>
+
+						<p>{ __( 'Padding top', 'nuk-blocks' ) }</p>
+						<RangeControl
+							min={ 0 }
+							max={ 96 }
+							step={ 8 }
+							value={ paddingTop }
+							onChange={ ( paddingTop ) => setAttributes( { paddingTop } ) }
+						/>
+
+						<p>{ __( 'Padding bottom', 'nuk-blocks' ) }</p>
+						<RangeControl
+							min={ 0 }
+							max={ 96 }
+							step={ 8 }
+							value={ paddingBottom }
+							onChange={ ( paddingBottom ) => setAttributes( { paddingBottom } ) }
+						/>
+
+						<p>{ __( 'Background color:', 'nuk-blocks' ) }</p>
+						<ColorPalette
+							disableCustomColors={ false }
+							clearable={ true }
+							onChange={ ( backgroundColor ) => setAttributes( {
+								backgroundColor,
+							} ) }
 						/>
 					</PanelBody>
 				</InspectorControls>

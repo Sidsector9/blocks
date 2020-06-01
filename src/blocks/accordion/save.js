@@ -4,9 +4,18 @@ export const save = ( props ) => {
 
 	const {
 		attributes: {
-			maxWidth
+			maxWidth,
+			paddingTop,
+			paddingBottom,
+			backgroundColor,
 		}
 	} = props;
+
+	const STY_ACC_WR = {
+		paddingTop,
+		paddingBottom,
+		backgroundColor,
+	}
 
 	const STYLE_ACC = {
 		maxWidth,
@@ -15,8 +24,10 @@ export const save = ( props ) => {
 	};
 
 	return (
-		<div style={ STYLE_ACC }>
-			<InnerBlocks.Content />
+		<div style={ STY_ACC_WR }>
+			<div style={ STYLE_ACC }>
+				<InnerBlocks.Content />
+			</div>
 		</div>
 	);
 };

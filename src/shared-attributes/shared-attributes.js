@@ -15,6 +15,18 @@ const addSharedAttributes = ( settings, name ) => {
 			type: 'string',
             default: '100%',
 		},
+		paddingTop: {
+			type: 'number',
+			default: 48,
+		},
+		paddingBottom: {
+			type: 'number',
+			default: 48,
+		},
+		backgroundColor: {
+			type: 'string',
+			default: 'lightblue',
+		}
 	} );
 	
     return settings;
@@ -31,7 +43,6 @@ const extendColumnAttributes = ( settings, name ) => {
 				default: 'flex-start',
 			}
 		} );
-
 	}
 	
     return settings;
