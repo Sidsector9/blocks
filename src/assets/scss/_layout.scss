@@ -5,11 +5,32 @@
 }
 
 .wp-block-columns {
-	align-items: flex-end;
-
 	.wp-block-column {
 		&:not(:first-child) {
 			margin-left: 20px;
+		}
+	}
+}
+
+.nbccw {
+	&--flex-start {
+		.block-editor-block-list__layout,
+		.wp-block-columns {
+			align-items: flex-start;
+		}
+	}
+
+	&--center {
+		.block-editor-block-list__layout,
+		.wp-block-columns {
+			align-items: center;
+		}
+	}
+
+	&--flex-end {
+		.block-editor-block-list__layout,
+		.wp-block-columns {
+			align-items: flex-end;
 		}
 	}
 }

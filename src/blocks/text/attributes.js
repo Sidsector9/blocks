@@ -1,9 +1,14 @@
 export const attributes = {
 	text: {
 		type: 'string',
+		default: '',
 	},
-	alignment: {
+	textAlign: {
 		type: 'string',
 		default: 'left',
+	},
+	fontSize: {
+		type: 'number',
+		default: 16,
 	}
 };

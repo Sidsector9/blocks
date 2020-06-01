@@ -1,6 +1,5 @@
 import {
 	InspectorControls,
-	BlockControls,
 	InnerBlocks,
 	MediaPlaceholder,
 	ColorPalette,

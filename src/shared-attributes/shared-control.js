@@ -1,4 +1,5 @@
 import { blocksWithSharedAttributes } from './blocks-wth-shared-attributes';
+import { create } from 'domain';
 
 const { createHigherOrderComponent } = wp.compose;
 const { InspectorControls } = wp.blockEditor;
@@ -54,4 +55,61 @@ const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithAShar
 		);
 	}
 }, 'withSharedAttributesControl' );
-addFilter( 'editor.BlockEdit', 'newsuk/block-visibility-control', withSharedAttributesControl, 1 );
+addFilter( 'editor.BlockEdit', 'newsuk/sharedControl', withSharedAttributesControl, 1 );
+
+
+const withColumnsWrapper = createHigherOrderComponent( ( ColumnsBlock ) => {
+	return ( props ) => {
+
+		if ( 'core/columns' !== props.name ) {
+			return <ColumnsBlock { ...props } />;
+		}
+
+		const {
+			attributes: {
+				alignItems,
+			},
+			setAttributes,
+		} = props;
+
+		return (
+			<>
+				<InspectorControls>
+					<PanelBody>
+						<RadioControl
+							selected={ alignItems }
+							options={ [
+								{ label: 'Top', value: 'flex-start' },
+								{ label: 'Center', value: 'center' },
+								{ label: 'Bottom', value: 'flex-end' },
+							] }
+							onChange={ ( alignItems ) => setAttributes( { alignItems } ) }
+						/>
+					</PanelBody>
+				</InspectorControls>
+
+				<div className={ `nuk-block-core-columns-wrapper nbccw--${ alignItems }` }>
+					<ColumnsBlock { ...props } />
+				</div>
+			</>
+		);
+	}
+} )
+addFilter( 'editor.BlockEdit', 'newsuk/columnsWrapper', withColumnsWrapper, 1 );
+
+function addColumnsWrapperOnSave( element, blockType, attributes ) {
+	if ( 'core/columns' !== blockType.name ) {
+		return element;
+	}
+
+	const {
+		alignItems,
+	} = attributes;
+
+	return (
+        <div className={ `nuk-block-core-columns-wrapper nbccw--${ alignItems }` }>
+			{ element }
+        </div>
+    );
+}
+wp.hooks.addFilter( 'blocks.getSaveElement', 'extend-block-example/custom-save', addColumnsWrapperOnSave );

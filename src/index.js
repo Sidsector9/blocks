@@ -9,5 +9,6 @@ import './blocks/text/index.jsx';
 import './blocks/banner/index.jsx';
 import './blocks/accordion/index.jsx';
 import './blocks/pack/index.jsx';
+import './blocks/row/index.jsx';
 
 import './essentials/overrides.scss';

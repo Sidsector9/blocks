@@ -13,6 +13,8 @@
 		&__heading {
 			flex: 1;
 			font-size: 1.5rem;
+			font-family: tmb;
+			line-height: 1.15;
 		}
 
 		&__arrow {
@@ -32,10 +34,20 @@
 				transition: transform 0.3s ease;
 			}
 		}
+
+		&__description {
+			display: none;
+		}
 	}
 }
 
 .wp-block-nuk-int-accordion-item {
+	border-top: solid 1px #E2E2E2;
+
+	&:first-child {
+		border-top: 0;
+	}
+
 	.nuk-acc-item {
 		&__heading-wrapper {
 			cursor: pointer;
