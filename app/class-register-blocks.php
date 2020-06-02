@@ -21,11 +21,11 @@ class Register_Blocks {
 			'style' => 'nuk-blocks-css',
 		) );
 
-		register_block_type( 'nuk/int-accordion-item', array(
-			'editor_script' => 'nuk-blocks-js',
-			'editor_style' => 'nuk-blocks-css',
-			'style' => 'nuk-blocks-css',
-		) );
+		// register_block_type( 'nuk/int-accordion-item', array(
+		// 	'editor_script' => 'nuk-blocks-js',
+		// 	'editor_style' => 'nuk-blocks-css',
+		// 	'style' => 'nuk-blocks-css',
+		// ) );
 
 		register_block_type( 'nuk/banner', array(
 			'editor_script' => 'nuk-blocks-js',
@@ -66,18 +66,6 @@ class Register_Blocks {
 			'editor_style' => 'nuk-blocks-css',
 			'style' => 'nuk-blocks-css',
 		) );
-
-		/**
-		 * People card.
-		 *
-		 * @internal Used within a block composite.
-		 * @since 0.1.0
-		 */
-		// register_block_type( 'nuk/int-people-card', array(
-		// 	'editor_script' => 'nuk-blocks-js',
-		// 	'editor_style' => 'nuk-blocks-css',
-		// 	'style' => 'nuk-blocks-css',
-		// ) );
 	}
 
 	public function register_custom_category( $categories, $post ) {

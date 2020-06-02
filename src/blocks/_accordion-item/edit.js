@@ -11,9 +11,7 @@ export const edit = ( props ) => {
 
 	const {
 		attributes: {
-			imageUrl,
 			heading,
-			description,
 		},
 		setAttributes,
 	} = props;

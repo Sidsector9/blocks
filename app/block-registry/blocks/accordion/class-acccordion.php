@@ -1,7 +1,7 @@
 <?php
 namespace NewsUk\BlockRegistry\Blocks;
 
-class People_Card implements \NewsUk\BlockRegistry\Block_Registry {
+class Accordion implements \NewsUk\BlockRegistry\Block_Registry {
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_block' ) );
 	}
@@ -10,25 +10,25 @@ class People_Card implements \NewsUk\BlockRegistry\Block_Registry {
 		return array(
 			'align' => array(
 				'type' => 'string',
+				'default' => 'full',
+			),
+			'imageUrl' => array(
+				'type' => '',
 				'default' => '',
 			),
-			'text' => array(
+			'heading' => array(
 				'type' => 'string',
 				'default' => '',
 			),
-			'textAlign' => array(
+			'description' => array(
 				'type' => 'string',
 				'default' => '',
-			),
-			'fontSize' => array(
-				'type' => 'number',
-				'default' => 16,
 			),
 		);
 	}
 
 	public function register_block() {
-		register_block_type( 'nuk/people-card', array(
+		register_block_type( 'nuk/accordion', array(
 			'editor_script' => 'nuk-blocks-js',
 			'editor_style' => 'nuk-blocks-css',
 			'style' => 'nuk-blocks-css',
