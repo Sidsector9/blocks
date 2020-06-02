@@ -16,8 +16,8 @@ import {
 import { __ } from '@wordpress/i18n';
 
 const TEMPLATE = [
-	[ 'nuk/int-text', { fontSize: 48, color: '#fff' } ],
-	[ 'nuk/int-text', { fontSize: 32, color: '#fff' } ],
+	[ 'nuk/int-block-title', { fontSize: 48, color: '#fff' } ],
+	[ 'nuk/int-block-title', { fontSize: 32, color: '#fff' } ],
 ];
 
 const computeBannerTextPosition = ( position ) => {
