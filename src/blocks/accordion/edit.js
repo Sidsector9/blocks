@@ -7,7 +7,7 @@ import { auto } from 'async';
 
 const ALLOWED_BLOCKS = [ 'nuk/int-accordion-item' ];
 const TEMPLATE = [
-	[ 'nuk/int-block-title' ],
+	[ 'nuk/int-block-title', { textAlign: 'center', fontSize: 36 } ],
 	[ 'nuk/int-accordion-item' ]
 ];
 
