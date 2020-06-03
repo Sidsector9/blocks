@@ -22,17 +22,6 @@ class Register_Blocks {
 		) );
 
 		/**
-		 * Pack block.
-		 *
-		 * @since 0.1.0
-		 */
-		register_block_type( 'nuk/pack', array(
-			'editor_script' => 'nuk-blocks-js',
-			'editor_style' => 'nuk-blocks-css',
-			'style' => 'nuk-blocks-css',
-		) );
-
-		/**
 		 * Block title.
 		 *
 		 * @internal Used within a block composite.

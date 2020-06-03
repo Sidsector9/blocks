@@ -8,27 +8,42 @@ class Pack implements \NewsUk\BlockRegistry\Block_Registry {
 
 	public static function get_block_attributes() {
 		return array(
-			'align' => array(
+			'title' => array(
 				'type' => 'string',
-				'default' => '',
 			),
-			'text' => array(
+			'description' => array(
 				'type' => 'string',
-				'default' => '',
 			),
-			'textAlign' => array(
+			'price' => array(
 				'type' => 'string',
-				'default' => '',
 			),
-			'fontSize' => array(
-				'type' => 'number',
-				'default' => 16,
+			'frequency' => array(
+				'type' => 'string',
+			),
+			'cta' => array(
+				'type' => 'object',
+				'default' => array(
+					'text' => '',
+					'url' => '',
+				),
+			),
+			'packType' => array(
+				'type' => 'string',
+				'default' => 'no',
+			),
+			'packHighlightText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'entitlements' => array(
+				'type' => 'array',
+				'default' => [],
 			),
 		);
 	}
 
 	public function register_block() {
-		register_block_type( 'nuk/people-card', array(
+		register_block_type( 'nuk/int-pack', array(
 			'editor_script' => 'nuk-blocks-js',
 			'editor_style' => 'nuk-blocks-css',
 			'style' => 'nuk-blocks-css',
@@ -38,6 +53,6 @@ class Pack implements \NewsUk\BlockRegistry\Block_Registry {
 	}
 
 	public function render_callback( $attributes, $content ) {
-		return $content;
+		return require PLUGIN_BLOCK_VIEW_PATH . 'pack.php';
 	}
 }
