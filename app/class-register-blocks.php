@@ -14,24 +14,6 @@ class Register_Blocks {
 	public function register_blocks() {
 		wp_register_script( 'nuk-blocks-js', PLUGIN_DIR_URL . 'build/index.js', array( 'wp-blocks', 'wp-polyfill' ), '1.0', true );
 		wp_register_style( 'nuk-blocks-css', PLUGIN_DIR_URL . 'build/index.css', array(), '1.0', 'all' );
-
-		register_block_type( 'nuk/int-text', array(
-			'editor_script' => 'nuk-blocks-js',
-			'editor_style' => 'nuk-blocks-css',
-			'style' => 'nuk-blocks-css',
-		) );
-
-		/**
-		 * Block title.
-		 *
-		 * @internal Used within a block composite.
-		 * @since 0.1.0
-		 */
-		register_block_type( 'nuk/int-block-title', array(
-			'editor_script' => 'nuk-blocks-js',
-			'editor_style' => 'nuk-blocks-css',
-			'style' => 'nuk-blocks-css',
-		) );
 	}
 
 	public function register_custom_category( $categories, $post ) {

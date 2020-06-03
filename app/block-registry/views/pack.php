@@ -28,7 +28,7 @@
 		</a>
 	</div>
 	<div class="nuk-int-pack__entitlements">
-		<div class="nuk-int-pack__entitlements-title"><?php esc_html__( "What's included", 'nuk-blocks' ); ?></div>
+		<div class="nuk-int-pack__entitlements-title"><?php esc_html_e( "What's included", 'nuk-blocks' ); ?></div>
 			<?php foreach ( $attributes['entitlements'] as $entitlement ) :
 				$text = $entitlement['text'];
 				$icon = $entitlement['icon'];

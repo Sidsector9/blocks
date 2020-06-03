@@ -13,6 +13,6 @@ registerBlockType(
 		category: 'nuk',
 		attributes,
 		edit,
-		save,
+		save: () => null,
 	}
 );

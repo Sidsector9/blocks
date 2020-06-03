@@ -40,7 +40,7 @@ const extendColumnAttributes = ( settings, name ) => {
 		settings.attributes = Object.assign( settings.attributes, {
 			alignItems: {
 				type: 'string',
-				default: 'flex-start',
+				default: 'initial',
 			}
 		} );
 	}

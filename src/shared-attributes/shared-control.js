@@ -109,6 +109,7 @@ const withColumnsWrapper = createHigherOrderComponent( ( ColumnsBlock ) => {
 						<RadioControl
 							selected={ alignItems }
 							options={ [
+								{ label: 'No align', value: 'initial' },
 								{ label: 'Top', value: 'flex-start' },
 								{ label: 'Center', value: 'center' },
 								{ label: 'Bottom', value: 'flex-end' },
