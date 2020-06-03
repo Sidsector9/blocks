@@ -16,6 +16,10 @@ if ( ! defined( 'PLUGIN_DIR_PATH' ) ) {
 	define( 'PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
 }
 
+if ( ! defined( 'PLUGIN_BLOCK_VIEW_PATH' ) ) {
+	define( 'PLUGIN_BLOCK_VIEW_PATH', plugin_dir_path( __FILE__ ) . '/app/block-registry/views/' );
+}
+
 if ( ! defined( 'PLUGIN_DIR_URL' ) ) {
 	define( 'PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
 }

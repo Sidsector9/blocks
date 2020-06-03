@@ -85,21 +85,6 @@ class Banner implements \NewsUk\BlockRegistry\Block_Registry {
 		$style_text_out_wr = HM::assoc_array_to_inline_style( $style_text_out_wr );
 		$style_text_in_wr = HM::assoc_array_to_inline_style( $style_text_in_wr );
 
-		return sprintf(
-			'
-			<div class="wp-block-nuk-banner">
-				<div style="%s" class="nuk-banner__wrapper %s">
-					<div style="%s" class="nuk-banner__text-wrapper">
-						<div style="%s">%s</div>
-					</div>
-				</div>
-			</div>
-			',
-			$style_banner,
-			$attributes['layout'],
-			$style_text_out_wr,
-			$style_text_in_wr,
-			wp_kses_post( $content )
-		);
+		return require_once PLUGIN_BLOCK_VIEW_PATH . 'banner.php';
 	}
 }
