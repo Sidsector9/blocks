@@ -85,6 +85,6 @@ class Banner implements \NewsUk\BlockRegistry\Block_Registry {
 		$style_text_out_wr = HM::assoc_array_to_inline_style( $style_text_out_wr );
 		$style_text_in_wr = HM::assoc_array_to_inline_style( $style_text_in_wr );
 
-		return require_once PLUGIN_BLOCK_VIEW_PATH . 'banner.php';
+		return require PLUGIN_BLOCK_VIEW_PATH . 'banner.php';
 	}
 }
