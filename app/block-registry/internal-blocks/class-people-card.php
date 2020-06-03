@@ -39,19 +39,6 @@ class People_Card implements \NewsUk\BlockRegistry\Block_Registry {
 	}
 
 	public function render_callback( $attributes, $content ) {
-		return sprintf(
-			'
-				<div class="%s" style="background-color: %s">
-					<div class="nuk-pc__name">%s</div>
-					<div class="nuk-pc__info">%s</div>
-					<div class="nuk-pc__description">%s</div>
-				</div>
-			',
-			esc_attr( $attributes['className'] ),
-			esc_attr( $attributes['backgroundColor'] ),
-			wp_kses_post( $attributes['name'] ),
-			wp_kses_post( $attributes['info'] ),
-			wp_kses_post( $attributes['description'] ),
-		);
+		return require PLUGIN_BLOCK_VIEW_PATH . 'people-card.php';
 	}
 }
