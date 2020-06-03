@@ -7,7 +7,7 @@ import { save } from './save';
 import './index.scss';
 
 const supports = {
-	align: [ 'wide', 'full' ]
+	align: [ 'full' ]
 };
 
 registerBlockType(

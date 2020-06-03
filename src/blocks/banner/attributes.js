@@ -29,5 +29,17 @@ export const attributes = {
 	bannerTextPosition: {
 		type: 'string',
 		default: '1',
-	}
+	},
+	layout: {
+		type: 'string',
+		default: 'nuk-fit-container',
+	},
+	textWrapperWidth: {
+		type: 'number',
+		default: 100,
+	},
+	textWrapperAlign: {
+		type: 'string',
+		default: 'flex-start',
+	},
 };

@@ -21,12 +21,6 @@ class Register_Blocks {
 			'style' => 'nuk-blocks-css',
 		) );
 
-		register_block_type( 'nuk/banner', array(
-			'editor_script' => 'nuk-blocks-js',
-			'editor_style' => 'nuk-blocks-css',
-			'style' => 'nuk-blocks-css',
-		) );
-
 		/**
 		 * Pack block.
 		 *

@@ -1,11 +1,24 @@
 import { InnerBlocks } from '@wordpress/block-editor';
 
 export const save = ( props ) => {
+	const {
+		attributes: {
+			isBgSelected,
+			layout,
+			backgroundColor,
+			bgImageUrl,
+			bgType,
+			focalPoint,
+			textWrapperWidth,
+			textWrapperAlign,
+		}
+	} = props;
+
+	const STYLE_TXT_INN_WR = {
+		width: `${ textWrapperWidth }%`,
+	}
+
 	return (
-		<div>
-			<div className="nuk-banner__text-wrapper">
-				<InnerBlocks.Content />
-			</div>
-		</div>
-	);
+		<InnerBlocks.Content />
+	)
 };
