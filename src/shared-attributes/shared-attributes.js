@@ -25,7 +25,7 @@ const addSharedAttributes = ( settings, name ) => {
 		},
 		backgroundColor: {
 			type: 'string',
-			default: 'lightblue',
+			default: '#00000000',
 		}
 	} );
 	

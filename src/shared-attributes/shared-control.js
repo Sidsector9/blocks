@@ -24,6 +24,13 @@ const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithAShar
 			setAttributes
 		} = props;
 
+		const colors = [
+			{ name: __( 'Transparent', 'nuk-blocks' ), color: '#00000000' },
+			{ name: __( 'White', 'nuk-blocks' ), color: '#ffffff' },
+			{ name: __( 'Light Gray', 'nuk-blocks' ), color: '#f9f9f9' },
+			{ name: __( 'Black', 'nuk-blocks' ), color: '#000000' },
+		];
+
 		return (
 			<>
 				<InspectorControls>
@@ -72,8 +79,10 @@ const withSharedAttributesControl = createHigherOrderComponent( ( BlockWithAShar
 
 						<p>{ __( 'Background color:', 'nuk-blocks' ) }</p>
 						<ColorPalette
+							value={ backgroundColor }
 							disableCustomColors={ false }
 							clearable={ true }
+							colors={ colors }
 							onChange={ ( backgroundColor ) => setAttributes( {
 								backgroundColor,
 							} ) }

@@ -4,7 +4,7 @@ import {
 import { __ } from '@wordpress/i18n';
 
 const TEMPLATE = [
-	[ 'nuk/int-block-title' ],
+	[ 'nuk/int-block-title', { textAlign: 'center', fontSize: 36 } ],
 	[ 'core/columns', {} ]
 ];
 
@@ -32,7 +32,7 @@ export const edit = ( props ) => {
 	};
 
 	return (
-		<div style={ STY_PACK_WR }>
+		<div style={ STY_PACK_WR } className="wp-block-nuk-pack--editor">
 			<div style={ STYLE_PACK }>
 				<InnerBlocks
 					template={ TEMPLATE }
