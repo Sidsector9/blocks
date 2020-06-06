@@ -1,1 +1,0 @@
-import './left-aligned/banner-left.jsx';

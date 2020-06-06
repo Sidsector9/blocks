@@ -12,70 +12,16 @@ class Register_Blocks {
 	 * Loads JS/CSS assets on the block editor.
 	 */
 	public function register_blocks() {
-		wp_register_script( 'newsuk-blocks-js', PLUGIN_DIR_URL . 'dist/js/newsuk-blocks.min.js', array( 'wp-blocks', 'wp-element' ), '1.0', true );
-		wp_register_style( 'newsuk-blocks-css', PLUGIN_DIR_URL . 'dist/css/newsuk-blocks.min.css', array(), '1.0', 'all' );
-
-		register_block_type( 'newsuk/title', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/subscription-card', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/banner-left', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/columns', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/pack-default', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/accordion-container', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/accordion-item', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/row', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
-
-		register_block_type( 'newsuk/wrapper', array(
-			'editor_script' => 'newsuk-blocks-js',
-			'editor_style' => 'newsuk-blocks-css',
-			'style' => 'newsuk-blocks-css',
-		) );
+		wp_register_script( 'nuk-blocks-js', PLUGIN_DIR_URL . 'build/index.js', array( 'wp-blocks', 'wp-polyfill' ), '1.0', true );
+		wp_register_style( 'nuk-blocks-css', PLUGIN_DIR_URL . 'build/index.css', array(), '1.0', 'all' );
 	}
 
 	public function register_custom_category( $categories, $post ) {
 		return array_merge(
 			array(
 				array(
-					'slug' => 'newsuk',
-					'title' => __( 'News Uk', 'newsuk-blocks' ),
+					'slug' => 'nuk',
+					'title' => __( 'News Uk', 'nuk-blocks' ),
 				),
 			),
 			$categories

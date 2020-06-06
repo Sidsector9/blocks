@@ -1,0 +1,25 @@
+.wp-block-nuk-accordion--editor {
+	.block-editor-inner-blocks {
+		.wp-block {
+			margin-top: 0;
+			margin-top: 0.5rem;
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	[data-type="nuk/int-accordion-item"] {
+		border-top: solid 1px #E2E2E2;
+
+		&:first-child {
+			border-top: 0;
+		}
+	}
+}
+
+.wp-block-nuk-accordion,
+.wp-block-nuk-accordion--editor {
+	.wp-block-nuk-int-block-title,
+	.wp-block-nuk-int-block-title--editor {
+		margin-bottom: 3rem;
+	}
+}

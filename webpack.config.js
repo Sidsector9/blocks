@@ -1,63 +1,15 @@
-const path = require( 'path' );
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const defaultConfig = require("./node_modules/@wordpress/scripts/config/webpack.config");
 
 module.exports = {
-	entry: {
-		'newsuk-blocks' : './app/blocks/_index.jsx',
-	},
-	output: {
-		path: path.resolve( __dirname, 'dist' ),
-		filename: 'js/[name].min.js',
-	},
+	...defaultConfig,
 	module: {
+		...defaultConfig.module,
 		rules: [
+			...defaultConfig.module.rules,
 			{
-				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
-				use: {
-					loader: "babel-loader"
-				}
-			},
-			{
-				test: /\.(scss|sass|css)$/i,
-				use: [
-					// 'style-loader',
-					{
-						loader: MiniCssExtractPlugin.loader
-					},
-					'css-loader',
-					'resolve-url-loader',
-					{
-						loader: 'sass-loader',
-						options: {
-							sourceMap: true,
-						}
-					},
-					// {
-					// 	loader: 'sass-resources-loader',
-					// 	options: {
-					// 		sourceMap: true,
-					// 		resources: [ './app/blocks/_essentials/_essentials.scss' ],
-					// 	}
-					// },
-				]
-			},
-			{
-				test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-				use: [
-					{
-						loader: 'url-loader',
-						options: {
-							name: 'fonts/[name].[ext]',
-						},
-					}
-				],
-			},
+				test: /\.(woff2|woff|ttf)$/,
+				use: [ "url-loader" ]
+			}
 		]
-	},
-	plugins: [
-		new MiniCssExtractPlugin( {
-			filename: 'css/[name].min.css',
-		} )
-	]
+	}
 };
